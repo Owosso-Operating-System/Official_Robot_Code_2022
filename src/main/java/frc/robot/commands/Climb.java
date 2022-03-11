@@ -29,15 +29,15 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(controller.getRawAxis(4) > 0.1 || controller.getRawAxis(5) < -0.1){
-      climbMotors.pitchMotor.set(controller.getRawAxis(4));
+    if(controller.getRawAxis(4) > 0.1 || controller.getRawAxis(4) < -0.1){
+    //  climbMotors.pitchMotor.set(controller.getRawAxis(4));
     } else if(controller.getRawAxis(2) > 0.1){
       climbMotors.liftMotor.set(-controller.getRawAxis(2));
     } else if (controller.getRawAxis(3) > 0.1){
       climbMotors.liftMotor.set(controller.getRawAxis(3));
     } else{
       climbMotors.liftMotor.set(0);
-      climbMotors.pitchMotor.set(0);
+      //climbMotors.pitchMotor.set(0);
     }
   }
 
@@ -45,7 +45,7 @@ public class Climb extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     climbMotors.liftMotor.set(0);
-    climbMotors.pitchMotor.set(0);
+   // climbMotors.pitchMotor.set(0);
   }
 
   // Returns true when the command should end.

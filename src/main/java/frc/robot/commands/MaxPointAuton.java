@@ -76,26 +76,46 @@ public class MaxPointAuton extends CommandBase {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
+    Timer.delay(3);
     driveTrain.mecDrive.driveCartesian(.25, 0, turnSpeed);
-    Timer.delay(1.0);
-    IntakeMotors.intake.set(1);
+    Timer.delay(1.5);
+    //turn Right
+    driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
+    Timer.delay(0.5);
+    //turn Left
+    /*
+    driveTrain.mecDrive.driveCartesian(0, 0, -0.1);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
+    Timer.delay(0.5);
+    */
+    IntakeMotors.intake.set(-1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    Timer.delay(5);
+    Timer.delay(2.5);
     IntakeMotors.intake.set(0);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, turnSpeed);
-    Timer.delay(1.55);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0.5);
+    Timer.delay(3.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    // Timer.delay(2);
+    /*IntakeMotors.intake.set(1);
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
+    IntakeMotors.intake.set(-1);
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0.5);
+    IntakeMotors.intake.set(0);
     Timer.delay(2);
-    isFinished();
-    ((Encoder) DriveTrain.lbEncoder).reset();
+   */
+    //isFinished();
+    /*(Encoder) DriveTrain.lbEncoder).reset();
     ((Encoder) DriveTrain.lfEncoder).reset();
     ((Encoder) DriveTrain.rbEncoder).reset();
     ((Encoder) DriveTrain.rfEncoder).reset();
     driveTrain.gyro.reset();
+    */
+    
   }
 
 
@@ -106,9 +126,9 @@ public class MaxPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 > oneFoot * 6.1) {
+  // if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 > oneFoot * 6.1) {
       timeUp = true;
-    }
+   // }
     return timeUp;
   }
 }

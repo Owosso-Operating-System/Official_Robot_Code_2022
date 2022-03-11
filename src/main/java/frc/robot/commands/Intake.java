@@ -47,7 +47,7 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(hatchOrIntake){
+   /* if(hatchOrIntake){
         System.out.println(intakeMotors.hatchEncoder.getPosition());
       if(intakeMotors.hatchEncoder.getPosition() < 100 ){
         intakeMotors.hatch.set(0.5);
@@ -59,10 +59,14 @@ public class Intake extends CommandBase {
       if(intakeMotors.hatchEncoder.getPosition() > 100){
         intakeMotors.hatch.set(0);
       }
-
     }
-    else{
+    else{*/
+     // }
+     if(controller.getBButton() == true){
       intakeMotors.intake.set(255);
+    }
+    if(controller.getAButton() == true){
+      intakeMotors.intake.set(-255);
     }
   }
 
@@ -70,7 +74,7 @@ public class Intake extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     intakeMotors.intake.set(0);
-    intakeMotors.hatch.set(0);
+  //  intakeMotors.hatch.set(0);
 
   }
 

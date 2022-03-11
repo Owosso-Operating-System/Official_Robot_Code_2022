@@ -4,10 +4,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
@@ -34,7 +37,7 @@ public class RobotContainer {
   private final ClimbMotors climbMotors;
   public final XboxController controller0;
   public final XboxController controller1;
-//camera here
+  SendableChooser<Command> chooser = new SendableChooser<>();
 
     /**Method: RobotContainer
    * Parameters: N/A
@@ -46,13 +49,19 @@ public class RobotContainer {
    *               paramaters driveTrain, intakeMotors, and controller
    *  */
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+  /** The container for the robot. Contains subsystems, OI devices, and commands. 
+   * @param MinPointAuton 
+   * @param MaxPointAuton */
+  public RobotContainer(Command MinPointAuton, Command MaxPointAuton) {
     driveTrain = new DriveTrain();
     intakeMotors = new IntakeMotors();
     climbMotors = new ClimbMotors();
     controller0 = new XboxController(0);
     controller1 = new XboxController(1);
+    chooser.setDefaultOption("MinPoint", MinPointAuton);
+    chooser.addOption("MaxPoint", MaxPointAuton);
+    
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -68,24 +77,23 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(controller1, XboxController.Button.kA.value).toggleWhenPressed(new Intake(intakeMotors, controller1, false));
-    new JoystickButton(controller1, XboxController.Button.kX.value).toggleWhenPressed(new Intake(intakeMotors, controller1, true));
-    new JoystickButton(controller1, XboxController.Button.kY.value);
-    new JoystickButton(controller1, XboxController.Button.kB.value);
+    new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    //new JoystickButton(controller1, XboxController.Button.kX.value).toggleWhenPressed(new Intake(intakeMotors, controller1, true));
+    //new JoystickButton(controller1, XboxController.Button.kY.value);
+    new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1, false));
   }
   
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
+ * @return 
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return new MinPointAuton(driveTrain, 0);
+    //return new MinPointAuton(driveTrain, 0);
     //return new PIDDrive(driveTrain, 3.1, true); "Does not work"
     //return new PIDTurn(driveTrain, 0, -0.1);
     //return new MaxPointAuton(driveTrain, 0);
-    
+    return chooser.getSelected();
   }
 }

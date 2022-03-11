@@ -29,9 +29,9 @@ public static RelativeEncoder hatchEncoder;
 
 public IntakeMotors() {
   intake = new CANSparkMax(6, MotorType.kBrushless);
-  hatch = new CANSparkMax(7, MotorType.kBrushless);
+  //hatch = new CANSparkMax(7, MotorType.kBrushless);
 
-  hatchEncoder = hatch.getEncoder();
+  //hatchEncoder = hatch.getEncoder();
 } 
 
 

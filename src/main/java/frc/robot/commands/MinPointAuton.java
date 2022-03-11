@@ -64,14 +64,14 @@ public class MinPointAuton extends CommandBase {
 
 
     driveTrain.mecDrive.driveCartesian(-0.25, 0, turnSpeed);
-    Timer.delay(1.00);
+    Timer.delay(1.50);
     isFinished();
 
     
-    ((Encoder) DriveTrain.lbEncoder).reset();
-    ((Encoder) DriveTrain.lfEncoder).reset();
-    ((Encoder) DriveTrain.rbEncoder).reset();
-    ((Encoder) DriveTrain.rfEncoder).reset();
+    //((Encoder) DriveTrain.lbEncoder).reset();
+    //((Encoder) DriveTrain.lfEncoder).reset();
+    //((Encoder) DriveTrain.rbEncoder).reset();
+    //((Encoder) DriveTrain.rfEncoder).reset();
   }
 
   // Called once the command ends or is interrupted.
