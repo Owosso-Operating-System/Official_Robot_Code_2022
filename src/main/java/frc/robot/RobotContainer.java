@@ -34,7 +34,7 @@ public class RobotContainer {
   private final ClimbMotors climbMotors;
   public final XboxController controller0;
   public final XboxController controller1;
-
+//camera here
 
     /**Method: RobotContainer
    * Parameters: N/A
