@@ -26,7 +26,7 @@ public class ClimbMotors extends SubsystemBase {
   public ClimbMotors() {
 
     liftMotor = new CANSparkMax(5, MotorType.kBrushless);
-  //  pitchMotor = new CANSparkMax(8, MotorType.kBrushless);
+    pitchMotor = new CANSparkMax(8, MotorType.kBrushless);
   }
 
   @Override

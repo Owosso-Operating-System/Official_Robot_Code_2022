@@ -73,7 +73,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     driveTrain.setDefaultCommand(new Drive(driveTrain, controller0));       
-    climbMotors.setDefaultCommand(new Climb(climbMotors, controller1));
+    climbMotors.setDefaultCommand(new Climb(climbMotors, controller1, controller0));
   }
 
   /**
@@ -84,9 +84,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    //new JoystickButton(controller1, XboxController.Button.kX.value).toggleWhenPressed(new Intake(intakeMotors, controller1, true));
-    //new JoystickButton(controller1, XboxController.Button.kY.value);
+    new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1, false));
     new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1, false));
+
+    new JoystickButton(controller1, XboxController.Button.kLeftBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
   }
   
   /**
