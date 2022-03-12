@@ -12,8 +12,9 @@ public class Climb extends CommandBase {
   private final ClimbMotors climbMotors;
   public final XboxController controller;
 
-  /** Creates a new Climb. */
-  public Climb(ClimbMotors climbMotors,XboxController controller) {
+  /** Creates a new Climb. 
+ * @param controller0 */
+  public Climb(ClimbMotors climbMotors,XboxController controller, XboxController controller0) {
     this.climbMotors = climbMotors;
     this.controller = controller;
     addRequirements(climbMotors);

@@ -31,7 +31,6 @@ import frc.robot.commands.MaxPointAuton;
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
- * uuuygiuyuyf76
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
@@ -42,8 +41,8 @@ public class RobotContainer {
   public final XboxController controller0;
   public final XboxController controller1;
   SendableChooser<Command> chooser = new SendableChooser<>();
-    CvSink cvSink = CameraServer.getVideo();
-    CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
+  CvSink cvSink = CameraServer.getVideo();
+  CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
     /**Method: RobotContainer
    * Parameters: N/A
    * Variables used: DriveTrain, IntakeMotors, and controller 
@@ -66,14 +65,14 @@ public class RobotContainer {
     chooser.setDefaultOption("MinPoint", MinPointAuton);
     chooser.addOption("MaxPoint", MaxPointAuton);
     cvSink.setSource(outputStream);
-    
+    CameraServer.startAutomaticCapture();
 
 
     // Configure the button bindings
     configureButtonBindings();
 
     driveTrain.setDefaultCommand(new Drive(driveTrain, controller0));       
-    climbMotors.setDefaultCommand(new Climb(climbMotors, controller1));
+    climbMotors.setDefaultCommand(new Climb(climbMotors, controller1, controller0));
   }
 
   /**
@@ -84,9 +83,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    //new JoystickButton(controller1, XboxController.Button.kX.value).toggleWhenPressed(new Intake(intakeMotors, controller1, true));
-    //new JoystickButton(controller1, XboxController.Button.kY.value);
+    new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1, false));
     new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1, false));
+
+    new JoystickButton(controller1, XboxController.Button.kLeftBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
   }
   
   /**
