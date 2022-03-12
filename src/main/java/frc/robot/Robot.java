@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.MjpegServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -30,6 +33,12 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(m_autonomousCommand, m_autonomousCommand);
     
+    CameraServer.startAutomaticCapture();
+    
+    UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+    MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
+    mjpegServer1.setSource(usbCamera);
+
   }
 
   /**
