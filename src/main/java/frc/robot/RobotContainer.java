@@ -64,6 +64,7 @@ public class RobotContainer {
     controller1 = new XboxController(1);
     chooser.setDefaultOption("MinPoint", MinPointAuton);
     chooser.addOption("MaxPoint", MaxPointAuton);
+    SmartDashboard.putData(chooser);
     cvSink.setSource(outputStream);
     
 
