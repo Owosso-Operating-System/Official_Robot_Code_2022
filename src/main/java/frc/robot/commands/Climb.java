@@ -10,12 +10,16 @@ import frc.robot.subsystems.ClimbMotors;
 
 public class Climb extends CommandBase {
   private final ClimbMotors climbMotors;
-  public final XboxController controller;
+  public final XboxController controller1;
+  public final XboxController controller0;
 
-  /** Creates a new Climb. */
-  public Climb(ClimbMotors climbMotors,XboxController controller) {
+  /** Creates a new Climb. 
+   * @param controller0 */
+  public Climb(ClimbMotors climbMotors,XboxController controller1, XboxController controller0) {
     this.climbMotors = climbMotors;
-    this.controller = controller;
+    this.controller1 = controller1;
+    this.controller0 = controller0;
+
     addRequirements(climbMotors);
   
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,15 +33,20 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(controller.getRawAxis(4) > 0.1 || controller.getRawAxis(4) < -0.1){
+    if(controller1.getRawAxis(4) > 0.1 || controller1.getRawAxis(4) < -0.1){
     //  climbMotors.pitchMotor.set(controller.getRawAxis(4));
-    } else if(controller.getRawAxis(2) > 0.1){
-      climbMotors.liftMotor.set(-controller.getRawAxis(2));
-    } else if (controller.getRawAxis(3) > 0.1){
-      climbMotors.liftMotor.set(controller.getRawAxis(3));
+    } else if(controller1.getRawAxis(2) > 0.1){
+      climbMotors.liftMotor.set(-controller1.getRawAxis(2));
+    } else if (controller1.getRawAxis(3) > 0.1){
+      climbMotors.liftMotor.set(controller1.getRawAxis(3));
     } else{
       climbMotors.liftMotor.set(0);
       //climbMotors.pitchMotor.set(0);
+    }
+    if(controller0.getRawAxis(2) > 0.1){
+      climbMotors.pitchMotor.set(-controller0.getRawAxis(2));
+    }else if(controller0.getRawAxis(3) > 0.1){
+      climbMotors.pitchMotor.set(controller0.getRawAxis(3));
     }
   }
 

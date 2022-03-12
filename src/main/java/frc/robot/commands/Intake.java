@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -62,18 +63,30 @@ public class Intake extends CommandBase {
     }
     else{*/
      // }
+     intakeMotors.feedWheel.set(-1);
+     if(controller.getLeftBumper() == true){
+      intakeMotors.belt.set(1);
+    }
+    if(controller.getRightBumper() == true){
+      intakeMotors.belt.set(-1);
+    }
+     if(controller.getAButton() == true){
+       intakeMotors.intake.set(1);
+     }
+     if(controller.getXButton() == true){
+       intakeMotors.intake.set(-1);
+     }
      if(controller.getBButton() == true){
-      intakeMotors.intake.set(255);
-    }
-    if(controller.getAButton() == true){
-      intakeMotors.intake.set(-255);
-    }
+       intakeMotors.flyWheel.set(1);
+       Timer.delay(1);
+       intakeMotors.feedWheel.set(1);
+     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeMotors.intake.set(0);
+    intakeMotors.belt.set(0);
   //  intakeMotors.hatch.set(0);
 
   }

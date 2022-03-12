@@ -16,8 +16,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotors extends SubsystemBase {
   
-
 public static CANSparkMax intake;
+public static CANSparkMax belt;
+public static CANSparkMax flyWheel;
+public static CANSparkMax feedWheel;
 public static CANSparkMax hatch;
 public static RelativeEncoder hatchEncoder;
 
@@ -28,7 +30,10 @@ public static RelativeEncoder hatchEncoder;
    *    */
 
 public IntakeMotors() {
-  intake = new CANSparkMax(6, MotorType.kBrushless);
+  belt = new CANSparkMax(6, MotorType.kBrushless);
+  intake = new CANSparkMax(7, MotorType.kBrushless);
+  flyWheel = new CANSparkMax(9, MotorType.kBrushless);
+  feedWheel = new CANSparkMax(10, MotorType.kBrushless);
   //hatch = new CANSparkMax(7, MotorType.kBrushless);
 
   //hatchEncoder = hatch.getEncoder();
