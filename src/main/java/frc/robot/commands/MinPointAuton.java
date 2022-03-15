@@ -37,7 +37,7 @@ public class MinPointAuton extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
   
 
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1.50);
     isFinished();
 

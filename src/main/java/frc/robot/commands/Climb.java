@@ -15,10 +15,11 @@ public class Climb extends CommandBase {
 
   /** Creates a new Climb. 
    * @param controller0 */
-  public Climb(ClimbMotors climbMotors,XboxController controller1, XboxController controller0) {
+
+  public Climb(ClimbMotors climbMotors, XboxController controller0, XboxController controller1) {
     this.climbMotors = climbMotors;
-    this.controller1 = controller1;
-    this.controller0 = controller0;
+    this.controller1 = controller0;
+    this.controller0 = controller1;
 
     addRequirements(climbMotors);
   
@@ -31,6 +32,10 @@ public class Climb extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
+
+  /* 
+  */
+  
   @Override
   public void execute() {
     if(controller1.getRawAxis(4) > 0.1 || controller1.getRawAxis(4) < -0.1){
