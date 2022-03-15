@@ -87,6 +87,7 @@ public class Intake extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     intakeMotors.belt.set(0);
+    intakeMotors.feedWheel.set(-1);
   //  intakeMotors.hatch.set(0);
 
   }
