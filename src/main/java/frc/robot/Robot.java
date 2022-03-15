@@ -10,7 +10,6 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -33,6 +32,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(m_autonomousCommand, m_autonomousCommand);
     
+    // Creates and sets up the camera 
+
     CameraServer.startAutomaticCapture();
     
     UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
