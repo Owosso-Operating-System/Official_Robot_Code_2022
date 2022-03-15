@@ -81,9 +81,9 @@ public class MinPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 < oneFoot * 3) {
+  /*  if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 < oneFoot * 3) {
       timeUp = true;
-    }
+    }*/
     return timeUp;
   }
 }
