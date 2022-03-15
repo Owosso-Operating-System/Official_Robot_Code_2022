@@ -7,25 +7,19 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
-import frc.robot.commands.PIDTurn;
-import frc.robot.commands.MinPointAuton;
 import frc.robot.subsystems.ClimbMotors;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.MaxPointAuton;
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -56,6 +50,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. 
    * @param MinPointAuton 
    * @param MaxPointAuton */
+
   public RobotContainer(Command MinPointAuton, Command MaxPointAuton) {
     driveTrain = new DriveTrain();
     intakeMotors = new IntakeMotors();
@@ -67,8 +62,6 @@ public class RobotContainer {
     SmartDashboard.putData(chooser);
     cvSink.setSource(outputStream);
     
-
-
     // Configure the button bindings
     configureButtonBindings();
 
@@ -82,6 +75,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+
   private void configureButtonBindings() {
     new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1, false));
     new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1, false));
@@ -98,11 +92,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    
-    //return new MinPointAuton(driveTrain, 0);
-    //return new PIDDrive(driveTrain, 3.1, true); "Does not work"
-    //return new PIDTurn(driveTrain, 0, -0.1);
-    //return new MaxPointAuton(driveTrain, 0);
     return chooser.getSelected();
   }
 }

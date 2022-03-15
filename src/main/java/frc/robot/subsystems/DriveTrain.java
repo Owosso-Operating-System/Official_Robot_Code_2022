@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -23,10 +21,6 @@ public class DriveTrain extends SubsystemBase {
   private final CANSparkMax leftFront;
   private final CANSparkMax rightBack;
   private final CANSparkMax rightFront; 
-  public static RelativeEncoder lbEncoder;
-  public static RelativeEncoder lfEncoder;
-  public static RelativeEncoder rbEncoder;
-  public static RelativeEncoder rfEncoder;
 
      public final MecanumDrive mecDrive;
 
@@ -46,10 +40,6 @@ public class DriveTrain extends SubsystemBase {
     leftFront = new CANSparkMax( 4, MotorType.kBrushless);
     rightBack = new CANSparkMax( 2, MotorType.kBrushless);
     rightFront = new CANSparkMax( 1, MotorType.kBrushless);
-    lbEncoder = leftBack.getEncoder();
-    lfEncoder = leftFront.getEncoder();
-    rbEncoder = rightBack.getEncoder();
-    rfEncoder = rightFront.getEncoder();
 
     rightBack.setInverted(true);
     rightFront.setInverted(true);

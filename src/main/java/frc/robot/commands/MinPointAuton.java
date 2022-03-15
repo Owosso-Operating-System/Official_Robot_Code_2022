@@ -37,7 +37,7 @@ public class MinPointAuton extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
   
 
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1.50);
     isFinished();
 
@@ -55,9 +55,9 @@ public class MinPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 < oneFoot * 3) {
+  /*  if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 < oneFoot * 3) {
       timeUp = true;
-    }
+    }*/
     return timeUp;
   }
 }

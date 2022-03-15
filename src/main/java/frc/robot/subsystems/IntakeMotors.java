@@ -25,7 +25,7 @@ public static RelativeEncoder hatchEncoder;
 
 /**Method: IntakeMotors
    * Parameters: None
-   * Variables used: intake and hatch
+   * Variables used: belt, intake, flywheel, and feedwheel.
    * What it does: Assigns the CANSparkMax variables their output ports
    *    */
 
@@ -34,9 +34,6 @@ public IntakeMotors() {
   intake = new CANSparkMax(7, MotorType.kBrushless);
   flyWheel = new CANSparkMax(9, MotorType.kBrushless);
   feedWheel = new CANSparkMax(10, MotorType.kBrushless);
-  //hatch = new CANSparkMax(7, MotorType.kBrushless);
-
-  //hatchEncoder = hatch.getEncoder();
 } 
 
 

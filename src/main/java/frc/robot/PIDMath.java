@@ -7,9 +7,15 @@ package frc.robot;
 import frc.robot.subsystems.DriveTrain;
 
 /** Add your docs here. */
+
+/** Class: PIDMath
+   * Creates PID caommand.
+   * The class calculates the direction needed to face foreward.
+   *  */
+
 public class PIDMath {
 
-    public static double PIDMath(DriveTrain driveTrain, int setAngle){
+    public static double getTurnSpeed(DriveTrain driveTrain, int setAngle){
 
     driveTrain.gyro.reset();
     

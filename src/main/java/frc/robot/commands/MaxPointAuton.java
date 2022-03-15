@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.PIDMath;
-import frc.robot.commands.PIDTurn;
 
 public class MaxPointAuton extends CommandBase {
   
@@ -49,7 +48,7 @@ public class MaxPointAuton extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
 
     Timer.delay(3);
-    driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1.5);
     //turn Right
     driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
@@ -67,7 +66,7 @@ public class MaxPointAuton extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(2.5);
     IntakeMotors.intake.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     // Timer.delay(2);
