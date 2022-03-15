@@ -1,0 +1,47 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot;
+
+import frc.robot.subsystems.DriveTrain;
+
+/** Add your docs here. */
+public class PIDMath {
+
+    public static double PIDMath(DriveTrain driveTrain, int setAngle){
+
+    driveTrain.gyro.reset();
+    
+    double kP = 0.003;
+    double kI = 0.001;
+    double kD = 0.005;
+
+    double proportional;
+    double integral;
+    double derivative;
+
+    double kAngleSetpoint = setAngle;
+    double speedLimit = 0.1;
+
+    double error = 0;
+    double totalError = 0;
+    double lastError = 0;
+
+    error = kAngleSetpoint - driveTrain.gyro.getAngle();
+    totalError += error;
+
+    proportional = error * kP;
+    integral = totalError * kI;
+    derivative = (error - lastError) * kD;
+
+    double output = proportional + integral + derivative;
+
+    speedLimit = Math.copySign(speedLimit, output);
+
+    double turnSpeed = output > speedLimit ? speedLimit : output;
+
+    return turnSpeed;
+    }
+    
+}

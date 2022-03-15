@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
+import frc.robot.PIDMath;
 import frc.robot.commands.PIDTurn;
 
 public class MaxPointAuton extends CommandBase {
@@ -43,41 +44,12 @@ public class MaxPointAuton extends CommandBase {
   // Math to determin the direction we are going in autonomous.
   @Override
   public void execute() {
-    driveTrain.gyro.reset();
     
-    double kP = 0.003;
-    double kI = 0.001;
-    double kD = 0.005;
-
-    double proportional;
-    double integral;
-    double derivative;
-
-    double kAngleSetpoint = setAngle;
-    double speedLimit = 0.1;
-
-    double error = 0;
-    double totalError = 0;
-    double lastError = 0;
-
-    error = kAngleSetpoint - driveTrain.gyro.getAngle();
-    totalError += error;
-
-    proportional = error * kP;
-    integral = totalError * kI;
-    derivative = (error - lastError) * kD;
-
-    double output = proportional + integral + derivative;
-
-    speedLimit = Math.copySign(speedLimit, output);
-
-    double turnSpeed = output > speedLimit ? speedLimit : output;
-
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
     Timer.delay(3);
-    driveTrain.mecDrive.driveCartesian(.25, 0, turnSpeed);
+    driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
     Timer.delay(1.5);
     //turn Right
     driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
@@ -95,7 +67,7 @@ public class MaxPointAuton extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(2.5);
     IntakeMotors.intake.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, turnSpeed);
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     // Timer.delay(2);

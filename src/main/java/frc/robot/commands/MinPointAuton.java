@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.PIDMath;
 import frc.robot.subsystems.DriveTrain;
 
 public class MinPointAuton extends CommandBase {
@@ -34,36 +35,9 @@ public class MinPointAuton extends CommandBase {
   @Override
   public void execute() {
     driveTrain.mecDrive.setSafetyEnabled(false);
-    double kP = 0.003;
-    double kI = 0.001;
-    double kD = 0.005;
+  
 
-    double proportional;
-    double integral;
-    double derivative;
-
-    double kAngleSetpoint = setAngle;
-    double speedLimit = 0.1;
-
-    double error = 0;
-    double totalError = 0;
-    double lastError = 0;
-
-    error = kAngleSetpoint - driveTrain.gyro.getAngle();
-    totalError += error;
-
-    proportional = error * kP;
-    integral = totalError * kI;
-    derivative = (error - lastError) * kD;
-
-    double output = proportional + integral + derivative;
-
-    speedLimit = Math.copySign(speedLimit, output);
-
-    double turnSpeed = output > speedLimit ? speedLimit : output;
-
-
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, turnSpeed);
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.PIDMath(driveTrain, setAngle));
     Timer.delay(1.50);
     isFinished();
 
