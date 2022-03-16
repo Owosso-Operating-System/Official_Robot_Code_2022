@@ -4,13 +4,6 @@
 
 package frc.robot.commands;
 
-import java.sql.Time;
-import java.util.concurrent.TimeUnit;
-
-import javax.swing.JList.DropLocation;
-
-import edu.wpi.first.math.Drake;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
@@ -25,7 +18,7 @@ public class MaxPointAuton extends CommandBase {
 
   boolean timeUp = false;
 
-  /** Creates a new TestAuton. */
+  /** Creates a new MaxPointAuton. */
   public MaxPointAuton(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
@@ -39,11 +32,8 @@ public class MaxPointAuton extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-
-  // Math to determin the direction we are going in autonomous.
   @Override
   public void execute() {
-    
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
@@ -62,31 +52,14 @@ public class MaxPointAuton extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
     Timer.delay(0.5);
     */
-    IntakeMotors.intake.set(-1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    IntakeMotors.intake.set(-1);
     Timer.delay(2.5);
     IntakeMotors.intake.set(0);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     // Timer.delay(2);
-    /*IntakeMotors.intake.set(1);
-    Timer.delay(1);
-    driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
-    IntakeMotors.intake.set(-1);
-    Timer.delay(1);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0.5);
-    IntakeMotors.intake.set(0);
-    Timer.delay(2);
-   */
-    //isFinished();
-    /*(Encoder) DriveTrain.lbEncoder).reset();
-    ((Encoder) DriveTrain.lfEncoder).reset();
-    ((Encoder) DriveTrain.rbEncoder).reset();
-    ((Encoder) DriveTrain.rfEncoder).reset();
-    driveTrain.gyro.reset();
-    */
-    
   }
 
 
@@ -97,9 +70,7 @@ public class MaxPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  // if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 > oneFoot * 6.1) {
-      timeUp = true;
-   // }
+    timeUp = true;
     return timeUp;
   }
 }

@@ -4,13 +4,9 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Robot;
 import frc.robot.subsystems.IntakeMotors;
 
 /** Class: Intake
@@ -19,11 +15,7 @@ import frc.robot.subsystems.IntakeMotors;
 
 public class Intake extends CommandBase {
  
-  private final IntakeMotors intakeMotors;
   public final XboxController controller;
-  public final boolean hatchOrIntake;
-
-  public boolean open;
 
   /**Method: Intake
    * Parameters: IntakeMotors, XboxController, and boolean
@@ -34,10 +26,8 @@ public class Intake extends CommandBase {
    *               Uses addRequirements to tie IntakeMotors to Intake            
    *  */
 
-  public Intake(IntakeMotors intakeMotors, XboxController controller, boolean hatchOrIntake) {
-    this.intakeMotors = intakeMotors;
+  public Intake(IntakeMotors intakeMotors, XboxController controller) {
     this.controller = controller;
-    this.hatchOrIntake = hatchOrIntake;
     addRequirements(intakeMotors);
   }
 
@@ -48,46 +38,30 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   /* if(hatchOrIntake){
-        System.out.println(intakeMotors.hatchEncoder.getPosition());
-      if(intakeMotors.hatchEncoder.getPosition() < 100 ){
-        intakeMotors.hatch.set(0.5);
-      }
-      if(intakeMotors.hatchEncoder.getPosition() > 110 ){
-        intakeMotors.hatch.set(-0.1);
-      }
-
-      if(intakeMotors.hatchEncoder.getPosition() > 100){
-        intakeMotors.hatch.set(0);
-      }
-    }
-    else{*/
-     // }
-     intakeMotors.feedWheel.set(-1);
+     IntakeMotors.feedWheel.set(-1);
      if(controller.getLeftBumper() == true){
-      intakeMotors.belt.set(1);
+      IntakeMotors.belt.set(1);
     }
     if(controller.getRightBumper() == true){
-      intakeMotors.belt.set(-1);
+      IntakeMotors.belt.set(-1);
     }
      if(controller.getAButton() == true){
-       intakeMotors.intake.set(1);
+       IntakeMotors.intake.set(1);
      }
      if(controller.getXButton() == true){
-       intakeMotors.intake.set(-1);
+       IntakeMotors.intake.set(-1);
      }
      if(controller.getBButton() == true){
-       intakeMotors.flyWheel.set(1);
+       IntakeMotors.flyWheel.set(1);
        Timer.delay(1);
-       intakeMotors.feedWheel.set(1);
+       IntakeMotors.feedWheel.set(1);
      }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeMotors.belt.set(0);
-  //  intakeMotors.hatch.set(0);
+    IntakeMotors.belt.set(0);
 
   }
 
