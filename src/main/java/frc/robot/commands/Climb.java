@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimbMotors;
 
 public class Climb extends CommandBase {
-  private final ClimbMotors climbMotors;
   public final XboxController controller1;
   public final XboxController controller0;
 
@@ -17,7 +16,6 @@ public class Climb extends CommandBase {
    * @param controller0 */
 
   public Climb(ClimbMotors climbMotors, XboxController controller0, XboxController controller1) {
-    this.climbMotors = climbMotors;
     this.controller1 = controller0;
     this.controller0 = controller1;
 
@@ -33,32 +31,32 @@ public class Climb extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
 
-  /* 
+  /* Ties the joysticks and the triggers to their motors
   */
-  
+
   @Override
   public void execute() {
     if(controller1.getRawAxis(4) > 0.1 || controller1.getRawAxis(4) < -0.1){
     //  climbMotors.pitchMotor.set(controller.getRawAxis(4));
     } else if(controller1.getRawAxis(2) > 0.1){
-      climbMotors.liftMotor.set(-controller1.getRawAxis(2));
+      ClimbMotors.liftMotor.set(-controller1.getRawAxis(2));
     } else if (controller1.getRawAxis(3) > 0.1){
-      climbMotors.liftMotor.set(controller1.getRawAxis(3));
+      ClimbMotors.liftMotor.set(controller1.getRawAxis(3));
     } else{
-      climbMotors.liftMotor.set(0);
+      ClimbMotors.liftMotor.set(0);
       //climbMotors.pitchMotor.set(0);
     }
     if(controller0.getRawAxis(2) > 0.1){
-      climbMotors.pitchMotor.set(-controller0.getRawAxis(2));
+      ClimbMotors.pitchMotor.set(-controller0.getRawAxis(2));
     }else if(controller0.getRawAxis(3) > 0.1){
-      climbMotors.pitchMotor.set(controller0.getRawAxis(3));
+      ClimbMotors.pitchMotor.set(controller0.getRawAxis(3));
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climbMotors.liftMotor.set(0);
+    ClimbMotors.liftMotor.set(0);
    // climbMotors.pitchMotor.set(0);
   }
 

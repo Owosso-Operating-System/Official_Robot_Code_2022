@@ -77,13 +77,13 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
-    new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1));
+    new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1));
+    new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1));
+    new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1));
 
-    new JoystickButton(controller1, XboxController.Button.kLeftBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
-    new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1, false));
+    new JoystickButton(controller1, XboxController.Button.kLeftBumper.value).whenHeld(new Intake(intakeMotors, controller1));
+    new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1));
   }
   
   /**

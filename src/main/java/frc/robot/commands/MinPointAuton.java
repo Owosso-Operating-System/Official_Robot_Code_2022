@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDMath;
@@ -18,7 +17,7 @@ public class MinPointAuton extends CommandBase {
 
   boolean timeUp = false;
 
-  /** Creates a new TestAuton. */
+  /** Creates a new MinPointAuton. */
   public MinPointAuton(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
@@ -38,14 +37,9 @@ public class MinPointAuton extends CommandBase {
   
 
     driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
-    Timer.delay(1.50);
-    isFinished();
-
-    
-    //((Encoder) DriveTrain.lbEncoder).reset();
-    //((Encoder) DriveTrain.lfEncoder).reset();
-    //((Encoder) DriveTrain.rbEncoder).reset();
-    //((Encoder) DriveTrain.rfEncoder).reset();
+    Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    Timer.delay(13);
   }
 
   // Called once the command ends or is interrupted.
@@ -55,9 +49,6 @@ public class MinPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  /*  if(driveTrain.lbEncoder.getPosition() + driveTrain.lfEncoder.getPosition() + driveTrain.rbEncoder.getPosition() + driveTrain.rfEncoder.getPosition() / 4 < oneFoot * 3) {
-      timeUp = true;
-    }*/
-    return timeUp;
+    return true;
   }
 }
