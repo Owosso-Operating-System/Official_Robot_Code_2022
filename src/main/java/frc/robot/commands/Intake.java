@@ -62,7 +62,7 @@ public class Intake extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     IntakeMotors.belt.set(0);
-
+    IntakeMotors.feedWheel.set(-1);
   }
 
   // Returns true when the command should end.
