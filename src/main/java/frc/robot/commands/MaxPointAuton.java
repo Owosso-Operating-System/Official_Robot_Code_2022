@@ -37,14 +37,14 @@ public class MaxPointAuton extends CommandBase {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    Timer.delay(3);
+    //Timer.delay(3);
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1.5);
     //turn Right
-    driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
+    /*driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
     Timer.delay(0.5);
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
-    Timer.delay(0.5);
+    Timer.delay(0.5);*/
     //turn Left
     /*
     driveTrain.mecDrive.driveCartesian(0, 0, -0.1);
@@ -53,9 +53,13 @@ public class MaxPointAuton extends CommandBase {
     Timer.delay(0.5);
     */
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    IntakeMotors.intake.set(-1);
-    Timer.delay(2.5);
-    IntakeMotors.intake.set(0);
+    IntakeMotors.feedWheel.set(-1);
+    IntakeMotors.flyWheel.set(1);
+    Timer.delay(.5);
+    IntakeMotors.feedWheel.set(1); 
+    Timer.delay(.5);
+    IntakeMotors.flyWheel.set(0);
+    IntakeMotors.feedWheel.set(0);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
