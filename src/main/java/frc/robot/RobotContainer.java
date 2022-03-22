@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -35,7 +36,7 @@ public class RobotContainer {
   public final XboxController controller0;
   public final XboxController controller1;
   SendableChooser<Command> chooser = new SendableChooser<>();
-    CvSink cvSink = CameraServer.getVideo();
+    UsbCamera cvSink = CameraServer.startAutomaticCapture("USB Camera 0", 0);
     CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
     /**Method: RobotContainer
    * Parameters: N/A
@@ -60,7 +61,6 @@ public class RobotContainer {
     chooser.setDefaultOption("MinPoint", MinPointAuton);
     chooser.addOption("MaxPoint", MaxPointAuton);
     SmartDashboard.putData(chooser);
-    cvSink.setSource(outputStream);
     
     // Configure the button bindings
     configureButtonBindings();
