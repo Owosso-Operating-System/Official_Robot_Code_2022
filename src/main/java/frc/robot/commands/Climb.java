@@ -37,14 +37,12 @@ public class Climb extends CommandBase {
   @Override
   public void execute() {
     if(controller1.getRawAxis(4) > 0.1 || controller1.getRawAxis(4) < -0.1){
-     // climbMotors.pitchMotor.set(controller.getRawAxis(4));
     } else if(controller1.getRawAxis(2) > 0.1){
       ClimbMotors.liftMotor.set(-controller1.getRawAxis(2));
     } else if (controller1.getRawAxis(3) > 0.1){
       ClimbMotors.liftMotor.set(controller1.getRawAxis(3));
     } else{
       ClimbMotors.liftMotor.set(0);
-      //climbMotors.pitchMotor.set(0);
     }
     if(controller0.getRawAxis(2) > 0.1){
       ClimbMotors.pitchMotor.set(-controller0.getRawAxis(2));
