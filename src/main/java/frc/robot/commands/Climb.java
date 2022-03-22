@@ -37,7 +37,7 @@ public class Climb extends CommandBase {
   @Override
   public void execute() {
     if(controller1.getRawAxis(4) > 0.1 || controller1.getRawAxis(4) < -0.1){
-    //  climbMotors.pitchMotor.set(controller.getRawAxis(4));
+     // climbMotors.pitchMotor.set(controller.getRawAxis(4));
     } else if(controller1.getRawAxis(2) > 0.1){
       ClimbMotors.liftMotor.set(-controller1.getRawAxis(2));
     } else if (controller1.getRawAxis(3) > 0.1){
@@ -50,6 +50,8 @@ public class Climb extends CommandBase {
       ClimbMotors.pitchMotor.set(-controller0.getRawAxis(2));
     }else if(controller0.getRawAxis(3) > 0.1){
       ClimbMotors.pitchMotor.set(controller0.getRawAxis(3));
+    }else{
+      ClimbMotors.pitchMotor.set(0);
     }
   }
 
@@ -57,7 +59,7 @@ public class Climb extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     ClimbMotors.liftMotor.set(0);
-   // climbMotors.pitchMotor.set(0);
+    ClimbMotors.pitchMotor.set(0);
   }
 
   // Returns true when the command should end.
