@@ -36,8 +36,6 @@ public class RobotContainer {
   public final XboxController controller0;
   public final XboxController controller1;
   SendableChooser<Command> chooser = new SendableChooser<>();
-    UsbCamera cvSink = CameraServer.startAutomaticCapture("USB Camera 0", 0);
-    CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
     /**Method: RobotContainer
    * Parameters: N/A
    * Variables used: DriveTrain, IntakeMotors, and controller 
