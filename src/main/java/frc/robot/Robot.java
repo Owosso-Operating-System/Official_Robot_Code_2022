@@ -34,12 +34,7 @@ public class Robot extends TimedRobot {
     
     // Creates and sets up the camera 
 
-    CameraServer.startAutomaticCapture();
-    
-    UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-    try (MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181)) {
-      mjpegServer1.setSource(usbCamera);
-    }
+      CameraServer.startAutomaticCapture();
 
   }
 
