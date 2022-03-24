@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
+import frc.robot.commands.MaxPointAuton;
+import frc.robot.commands.MinPointAuton;
 import frc.robot.subsystems.ClimbMotors;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
@@ -31,7 +33,7 @@ public class RobotContainer {
   private final ClimbMotors climbMotors;
   public final XboxController controller0;
   public final XboxController controller1;
-  SendableChooser<Command> chooser = new SendableChooser<>();
+
     /**Method: RobotContainer
    * Parameters: N/A
    * Variables used: DriveTrain, IntakeMotors, and controller 
@@ -52,9 +54,6 @@ public class RobotContainer {
     climbMotors = new ClimbMotors();
     controller0 = new XboxController(0);
     controller1 = new XboxController(1);
-    chooser.setDefaultOption("MinPoint", MinPointAuton);
-    chooser.addOption("MaxPoint", MaxPointAuton);
-    SmartDashboard.putData(chooser);
     
     // Configure the button bindings
     configureButtonBindings();
@@ -86,6 +85,17 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return chooser.getSelected();
+    SmartDashboard.putString("Auto List","MaxPointAuton");
+    SmartDashboard.putString("Auto List","MinPointAuton");
+
+    String autoName = SmartDashboard.getString("Auto Selector", "MaxPointAuton");
+
+    switch(autoName){
+      case "MaxPointAuton":
+        return new MaxPointAuton(driveTrain, 90);
+      case "MinPointAuton":
+        return new MinPointAuton(driveTrain, 0);
+    }
+    return null;
   }
 }
