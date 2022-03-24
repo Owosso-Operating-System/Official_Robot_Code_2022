@@ -5,8 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.MjpegServer;
-import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -33,9 +31,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer(m_autonomousCommand, m_autonomousCommand);
     
     // Creates and sets up the camera 
-
       CameraServer.startAutomaticCapture();
-
   }
 
   /**
