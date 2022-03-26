@@ -45,11 +45,7 @@ public class RobotContainer {
    *               paramaters driveTrain, intakeMotors, and controller
    *  */
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. 
-   * @param MinPointAuton 
-   * @param MaxPointAuton */
-
-  public RobotContainer(Command MinPointAuton, Command MaxPointAuton) {
+  public RobotContainer() {
     driveTrain = new DriveTrain();
     intakeMotors = new IntakeMotors();
     climbMotors = new ClimbMotors();
@@ -86,7 +82,7 @@ public class RobotContainer {
  * @return 
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+
     String[] autons = {"MaxPointAuton","MaxPointAutonLeft","MaxPointAutonRight", "MinPointAuton"};
     SmartDashboard.putStringArray("Auto List", autons);
 
