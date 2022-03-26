@@ -10,7 +10,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.PIDMath;
 
-public class MaxPointAuton extends CommandBase {
+public class MaxPointAutonRight extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
@@ -19,7 +19,7 @@ public class MaxPointAuton extends CommandBase {
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public MaxPointAuton(DriveTrain driveTrain, int setAngle) {
+  public MaxPointAutonRight(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
     addRequirements(driveTrain);
@@ -40,6 +40,10 @@ public class MaxPointAuton extends CommandBase {
     //Timer.delay(3);
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0.1);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
+    Timer.delay(0.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.feedWheel.set(-1);
     IntakeMotors.flyWheel.set(1);
