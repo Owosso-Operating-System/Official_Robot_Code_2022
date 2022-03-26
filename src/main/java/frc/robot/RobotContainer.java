@@ -6,12 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
 import frc.robot.commands.MaxPointAuton;
+import frc.robot.commands.MaxPointAutonLeft;
+import frc.robot.commands.MaxPointAutonRight;
 import frc.robot.commands.MinPointAuton;
 import frc.robot.subsystems.ClimbMotors;
 import frc.robot.subsystems.DriveTrain;
@@ -86,14 +87,18 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    SmartDashboard.putString("Auto List","MaxPointAuton");
-    SmartDashboard.putString("Auto List","MinPointAuton");
+    String[] autons = {"MaxPointAuton","MaxPointAutonLeft","MaxPointAutonRight", "MinPointAuoton"};
+    SmartDashboard.putStringArray("Auto List", autons);
 
-    String autoName = SmartDashboard.getString("Auto Selector", "MaxPointAuton");
+    String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
     switch(autoName){
       case "MaxPointAuton":
         return new MaxPointAuton(driveTrain, 90);
+      case "MaxPointAutonLeft":
+        return new MaxPointAutonLeft(driveTrain, 90);
+      case "MaxPointAutonRight":
+        return new MaxPointAutonRight(driveTrain, 90);
       case "MinPointAuton":
         return new MinPointAuton(driveTrain, 0);
     }
