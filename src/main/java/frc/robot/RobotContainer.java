@@ -94,9 +94,9 @@ public class RobotContainer {
 
     switch(autoName){
       case "MaxPointAuton":
-        return new MaxPointAuton(driveTrain, 90);
+        return new MaxPointAuton(driveTrain, 0);
       case "MaxPointAutonLeft":
-        return new MaxPointAutonLeft(driveTrain, 90);
+        return new MaxPointAutonLeft(driveTrain, -90);
       case "MaxPointAutonRight":
         return new MaxPointAutonRight(driveTrain, 90);
       case "MinPointAuton":
