@@ -87,7 +87,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    String[] autons = {"MaxPointAuton","MaxPointAutonLeft","MaxPointAutonRight", "MinPointAuoton"};
+    String[] autons = {"MaxPointAuton","MaxPointAutonLeft","MaxPointAutonRight", "MinPointAuton"};
     SmartDashboard.putStringArray("Auto List", autons);
 
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
