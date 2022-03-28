@@ -83,18 +83,15 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    String[] autons = {"MaxPointAuton","MaxPointAutonLeft","MaxPointAutonRight", "MinPointAuton"};
-    SmartDashboard.putStringArray("Auto List", autons);
-
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
     switch(autoName){
       case "MaxPointAuton":
         return new MaxPointAuton(driveTrain, 0);
       case "MaxPointAutonLeft":
-        return new MaxPointAutonLeft(driveTrain, -90);
+        return new MaxPointAutonLeft(driveTrain, 60);
       case "MaxPointAutonRight":
-        return new MaxPointAutonRight(driveTrain, 90);
+        return new MaxPointAutonRight(driveTrain, 60);
       case "MinPointAuton":
         return new MinPointAuton(driveTrain, 0);
     }
