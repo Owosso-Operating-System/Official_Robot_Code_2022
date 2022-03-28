@@ -38,7 +38,6 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-     IntakeMotors.feedWheel.set(-1);
      if(controller.getLeftBumper() == true){
       IntakeMotors.belt.set(1);
     }
@@ -53,8 +52,6 @@ public class Intake extends CommandBase {
      }
      if(controller.getBButton() == true){
        IntakeMotors.flyWheel.set(1);
-       Timer.delay(1);
-       IntakeMotors.feedWheel.set(1);
      }
   }
 
@@ -62,7 +59,8 @@ public class Intake extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     IntakeMotors.belt.set(0);
-    IntakeMotors.feedWheel.set(-1);
+    IntakeMotors.intake.set(0);
+    IntakeMotors.flyWheel.set(0);
   }
 
   // Returns true when the command should end.
