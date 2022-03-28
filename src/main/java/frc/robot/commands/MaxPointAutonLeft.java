@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
@@ -34,28 +36,32 @@ public class MaxPointAutonLeft extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
     driveTrain.mecDrive.setSafetyEnabled(false);
 
     //Timer.delay(3);
-    driveTrain.mecDrive.driveCartesian(.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
-    Timer.delay(1.5);
-    driveTrain.mecDrive.driveCartesian(0, 0, -0.1);
-    Timer.delay(0.5);
-    driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
-    Timer.delay(0.5);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    IntakeMotors.feedWheel.set(-1);
-    IntakeMotors.flyWheel.set(1);
-    Timer.delay(.5);
-    IntakeMotors.feedWheel.set(1); 
-    Timer.delay(.5);
-    IntakeMotors.flyWheel.set(0);
-    IntakeMotors.feedWheel.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    // Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    Timer.delay(1);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
+    Timer.delay(0.25);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    IntakeMotors.flyWheel.set(1);
+    Timer.delay(1);
+    IntakeMotors.belt.set(1);
+    Timer.delay(1.5);
+    IntakeMotors.flyWheel.set(0);
+    IntakeMotors.belt.set(0);
+    driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
+    Timer.delay(1);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    Timer.delay(1);
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
+    Timer.delay(4.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
   }
 
 
