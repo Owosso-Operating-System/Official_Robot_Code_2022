@@ -6,11 +6,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.IntakeMotors;
 import frc.robot.PIDMath;
+import frc.robot.subsystems.DriveTrain;
 
-public class MaxPointAuton extends CommandBase {
+public class TwoPointAuton extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
@@ -18,14 +17,14 @@ public class MaxPointAuton extends CommandBase {
 
   boolean timeUp = false;
 
-  /** Creates a new MaxPointAuton. */
-  public MaxPointAuton(DriveTrain driveTrain, int setAngle) {
+  /** Creates a new MinPointAuton. */
+  public TwoPointAuton(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -34,25 +33,14 @@ public class MaxPointAuton extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
     driveTrain.mecDrive.setSafetyEnabled(false);
+  
 
-    //Timer.delay(3);
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(3.5);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    IntakeMotors.flyWheel.set(1);
-    Timer.delay(1);
-    IntakeMotors.belt.set(1);
-    Timer.delay(1.5);
-    IntakeMotors.flyWheel.set(0);
-    IntakeMotors.belt.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(5.5);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    // Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    Timer.delay(13);
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
@@ -61,7 +49,6 @@ public class MaxPointAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    timeUp = true;
-    return timeUp;
+    return true;
   }
 }
