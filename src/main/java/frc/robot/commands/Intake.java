@@ -39,10 +39,10 @@ public class Intake extends CommandBase {
   @Override
   public void execute() {
      if(controller.getRightBumper() == true){
-      IntakeMotors.belt.set(1);
+      IntakeMotors.flyWheel.set(1);
     }
     if(controller.getLeftBumper() == true){
-      IntakeMotors.belt.set(-1);
+      IntakeMotors.flyWheel.set(-1);
     }
      if(controller.getXButton() == true){
        IntakeMotors.intake.set(1);
@@ -51,10 +51,10 @@ public class Intake extends CommandBase {
        IntakeMotors.intake.set(-1);
      }
      if(controller.getBButton() == true){
-       IntakeMotors.flyWheel.set(1);
+       IntakeMotors.belt.set(1);
      }
      if(controller.getYButton() == true) {
-       IntakeMotors.flyWheel.set(-1);
+       IntakeMotors.belt.set(-1);
      }
   }
 
