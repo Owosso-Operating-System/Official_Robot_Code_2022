@@ -38,20 +38,23 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-     if(controller.getLeftBumper() == true){
+     if(controller.getRightBumper() == true){
       IntakeMotors.belt.set(1);
     }
-    if(controller.getRightBumper() == true){
+    if(controller.getLeftBumper() == true){
       IntakeMotors.belt.set(-1);
     }
-     if(controller.getAButton() == true){
+     if(controller.getXButton() == true){
        IntakeMotors.intake.set(1);
      }
-     if(controller.getXButton() == true){
+     if(controller.getAButton() == true){
        IntakeMotors.intake.set(-1);
      }
      if(controller.getBButton() == true){
        IntakeMotors.flyWheel.set(1);
+     }
+     if(controller.getYButton() == true) {
+       IntakeMotors.flyWheel.set(-1);
      }
   }
 

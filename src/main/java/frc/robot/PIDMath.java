@@ -26,7 +26,7 @@ public class PIDMath {
     double derivative;
 
     double kAngleSetpoint = setAngle;
-    double speedLimit = 0.1;
+    double speedLimit = 0.25;
 
     double error = 0;
     double totalError = 0;

@@ -42,14 +42,16 @@ public class SixPointAutonLeft extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-    Timer.delay(5);
+    while(DriveTrain.gyro.getAngle() < setAngle*6){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle*6));
+    }
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3);
-    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
-    Timer.delay(.4);
+    while(DriveTrain.gyro.getAngle() > setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    }
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(1);
+    Timer.delay(0.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
@@ -57,6 +59,11 @@ public class SixPointAutonLeft extends CommandBase {
     Timer.delay(1.5);
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
+    driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
+    Timer.delay(1);
+    while(DriveTrain.gyro.getAngle() < setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    }
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(5.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
