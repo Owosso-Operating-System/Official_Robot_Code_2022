@@ -38,33 +38,49 @@ public class FourPointAutonLeft extends CommandBase {
   public void execute() {
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    //Timer.delay(3);
+    //Turns on FlyWheel and drives forward
+    IntakeMotors.flyWheel.set(-1);
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3.5);
+    //Turns off FlyWheel, stops driving, then turns until at setAngle
+    IntakeMotors.flyWheel.set(0);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    while(DriveTrain.gyro.getAngle() != setAngle){
-      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+      if(DriveTrain.gyro.getAngle() < setAngle){
+        break; 
+      }
     }
     Timer.delay(1);
+    //Stops driving then slowly moves forward 
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
     Timer.delay(0.25);
+    //Stops then turns on FlyWheel
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
+    //Turns on Belt
     IntakeMotors.belt.set(1);
     Timer.delay(1.5);
+    //Turns off FlyWheel and Belt then moves backwards
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
     driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
     Timer.delay(1);
+    //Stops moving then turns back to an angle of 0
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    while(DriveTrain.gyro.getAngle() != setAngle){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle*6));
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
+      if(DriveTrain.gyro.getAngle() > 0){
+        break;
+      }
     }
     Timer.delay(1);
+    //Moves backwards
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(4.5);
+    //Stops the bot, end of FourPointAutonLeft
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
   }
 
