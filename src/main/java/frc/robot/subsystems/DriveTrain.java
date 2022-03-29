@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,7 +27,7 @@ public class DriveTrain extends SubsystemBase {
      public final MecanumDrive mecDrive;
 
      public static SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
-     public ADXRS450_Gyro gyro = new ADXRS450_Gyro(kGyroPort);
+     public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(kGyroPort);
 
   /**Method: DriveTrain
    * Parameters: None

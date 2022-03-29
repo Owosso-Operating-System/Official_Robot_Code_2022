@@ -16,8 +16,6 @@ import frc.robot.subsystems.DriveTrain;
 public class PIDMath {
 
     public static double getTurnSpeed(DriveTrain driveTrain, int setAngle){
-
-    driveTrain.gyro.reset();
     
     double kP = 0.003;
     double kI = 0.001;

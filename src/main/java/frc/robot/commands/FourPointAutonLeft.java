@@ -5,12 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.PIDMath;
 
-public class MaxPointAutonRight extends CommandBase {
+public class FourPointAutonLeft extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
@@ -19,7 +21,7 @@ public class MaxPointAutonRight extends CommandBase {
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public MaxPointAutonRight(DriveTrain driveTrain, int setAngle) {
+  public FourPointAutonLeft(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
     addRequirements(driveTrain);
@@ -34,14 +36,13 @@ public class MaxPointAutonRight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
     driveTrain.mecDrive.setSafetyEnabled(false);
 
     //Timer.delay(3);
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
@@ -56,12 +57,11 @@ public class MaxPointAutonRight extends CommandBase {
     driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(4.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    // Timer.delay(2);
   }
 
 

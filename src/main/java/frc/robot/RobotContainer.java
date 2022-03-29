@@ -10,10 +10,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
-import frc.robot.commands.MaxPointAuton;
-import frc.robot.commands.MaxPointAutonLeft;
-import frc.robot.commands.MaxPointAutonRight;
-import frc.robot.commands.MinPointAuton;
+import frc.robot.commands.SixPointAutonLeft;
+import frc.robot.commands.FourPointAuton;
+import frc.robot.commands.FourPointAutonLeft;
+import frc.robot.commands.FourPointAutonRight;
+import frc.robot.commands.TwoPointAuton;
 import frc.robot.subsystems.ClimbMotors;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
@@ -86,14 +87,16 @@ public class RobotContainer {
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
     switch(autoName){
-      case "MaxPointAuton":
-        return new MaxPointAuton(driveTrain, 0);
-      case "MaxPointAutonLeft":
-        return new MaxPointAutonLeft(driveTrain, 60);
-      case "MaxPointAutonRight":
-        return new MaxPointAutonRight(driveTrain, 60);
-      case "MinPointAuton":
-        return new MinPointAuton(driveTrain, 0);
+      case "SixPointAuton":
+        return new SixPointAutonLeft(driveTrain, 30);
+      case "FourPointAuton":
+        return new FourPointAuton(driveTrain, 0);
+      case "FourPointAutonLeft":
+        return new FourPointAutonLeft(driveTrain, 60);
+      case "FourPointAutonRight":
+        return new FourPointAutonRight(driveTrain, 60);
+      case "TwoPointAuton":
+        return new TwoPointAuton(driveTrain, 0);
     }
     return null;
   }
