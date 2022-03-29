@@ -42,7 +42,9 @@ public class FourPointAutonLeft extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3.5);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    while(DriveTrain.gyro.getAngle() != setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+    }
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
@@ -57,7 +59,9 @@ public class FourPointAutonLeft extends CommandBase {
     driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    while(DriveTrain.gyro.getAngle() != setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle*6));
+    }
     Timer.delay(1);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(4.5);
