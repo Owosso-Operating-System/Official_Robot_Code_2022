@@ -37,18 +37,22 @@ public class FourPointAuton extends CommandBase {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    //Timer.delay(3);
+    //Moves bot forward
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3.5);
+    //Bot stops, turns on FlyWheel
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
+    //Turns on Belt
     IntakeMotors.belt.set(1);
     Timer.delay(1.5);
+    //Turns off both FlyWheel and Belt, moves bot backwards
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(5.5);
+    //All bot movement ceases, end of FourPointAuton
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     // Timer.delay(2);
   }
