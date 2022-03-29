@@ -10,13 +10,13 @@ import frc.robot.PIDMath;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 
-public class SixPointAutonLeft extends CommandBase {
+public class SixPointAutonRight extends CommandBase {
 
   private final DriveTrain driveTrain;
   private final int setAngle;
 
   /** Creates a new SixPointAuton. */
-  public SixPointAutonLeft(DriveTrain driveTrain, int setAngle) {
+  public SixPointAutonRight(DriveTrain driveTrain, int setAngle) {
     this.driveTrain = driveTrain;
     this.setAngle = setAngle;
 
