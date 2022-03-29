@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putStringArray("Auto List", autons);
     
     // Creates and sets up the camera 
-      CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
   }
 
   /**
@@ -76,7 +76,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    //SmartDashboard.
+  }
 
   @Override
   public void teleopInit() {

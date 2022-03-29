@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
@@ -83,6 +84,8 @@ public class RobotContainer {
  * @return 
    */
   public Command getAutonomousCommand() {
+
+    driveTrain.gyro.reset();
 
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
