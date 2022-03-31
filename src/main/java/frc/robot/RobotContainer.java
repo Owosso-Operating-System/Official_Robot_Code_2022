@@ -6,12 +6,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.Intake;
 import frc.robot.commands.SixPointAutonLeft;
+import frc.robot.commands.SixPointAutonRight;
 import frc.robot.commands.FourPointAuton;
 import frc.robot.commands.FourPointAutonLeft;
 import frc.robot.commands.FourPointAutonRight;
@@ -85,21 +85,23 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    driveTrain.gyro.reset();
+    DriveTrain.gyro.reset();
 
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
     switch(autoName){
-      case "SixPointAuton":
-        return new SixPointAutonLeft(driveTrain, 30);
+      case "SixPointAutonLeft":
+        return new SixPointAutonLeft(driveTrain);
+        case "SixPointAutonRight":
+        return new SixPointAutonRight(driveTrain);
       case "FourPointAuton":
-        return new FourPointAuton(driveTrain, 0);
+        return new FourPointAuton(driveTrain);
       case "FourPointAutonLeft":
-        return new FourPointAutonLeft(driveTrain, 60);
+        return new FourPointAutonLeft(driveTrain);
       case "FourPointAutonRight":
-        return new FourPointAutonRight(driveTrain, 60);
+        return new FourPointAutonRight(driveTrain);
       case "TwoPointAuton":
-        return new TwoPointAuton(driveTrain, 0);
+        return new TwoPointAuton(driveTrain);
     }
     return null;
   }

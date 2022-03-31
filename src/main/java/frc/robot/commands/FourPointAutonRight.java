@@ -14,14 +14,12 @@ public class FourPointAutonRight extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
-  private final int setAngle;
 
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public FourPointAutonRight(DriveTrain driveTrain, int setAngle) {
+  public FourPointAutonRight(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-    this.setAngle = setAngle;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -45,8 +43,8 @@ public class FourPointAutonRight extends CommandBase {
     IntakeMotors.flyWheel.set(0);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
-      if(DriveTrain.gyro.getAngle() > setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 30));
+      if(DriveTrain.gyro.getAngle() > 27.5){
         break;
       }
     }
@@ -70,8 +68,8 @@ public class FourPointAutonRight extends CommandBase {
     //Stops bot, turns the bot to an angle of 0
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, 0));
-      if(DriveTrain.gyro.getAngle() < 0){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
+      if(DriveTrain.gyro.getAngle() < -2.5){
         break;
       }
     }

@@ -5,8 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
@@ -16,14 +14,12 @@ public class FourPointAutonLeft extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
-  private final int setAngle;
 
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public FourPointAutonLeft(DriveTrain driveTrain, int setAngle) {
+  public FourPointAutonLeft(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-    this.setAngle = setAngle;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -37,7 +33,7 @@ public class FourPointAutonLeft extends CommandBase {
   @Override
   public void execute() {
     driveTrain.mecDrive.setSafetyEnabled(false);
-
+    DriveTrain.gyro.reset();
     //Turns on FlyWheel and drives forward
     IntakeMotors.flyWheel.set(-1);
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
@@ -45,13 +41,14 @@ public class FourPointAutonLeft extends CommandBase {
     //Turns off FlyWheel, stops driving, then turns until at setAngle
     IntakeMotors.flyWheel.set(0);
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
     while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
-      if(DriveTrain.gyro.getAngle() < setAngle){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, -30));
+      if(DriveTrain.gyro.getAngle() < -32.5){
         break; 
       }
     }
-    Timer.delay(1);
+
     //Stops driving then slowly moves forward 
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     driveTrain.mecDrive.driveCartesian(0.1, 0, 0);
@@ -70,11 +67,13 @@ public class FourPointAutonLeft extends CommandBase {
     Timer.delay(1);
     //Stops moving then turns back to an angle of 0
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
-      if(DriveTrain.gyro.getAngle() > 0){
+      if(DriveTrain.gyro.getAngle() > -2.5){
         break;
       }
+
     }
     Timer.delay(1);
     //Moves backwards

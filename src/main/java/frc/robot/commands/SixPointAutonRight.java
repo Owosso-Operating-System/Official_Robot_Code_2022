@@ -13,12 +13,10 @@ import frc.robot.subsystems.IntakeMotors;
 public class SixPointAutonRight extends CommandBase {
 
   private final DriveTrain driveTrain;
-  private final int setAngle;
 
   /** Creates a new SixPointAuton. */
-  public SixPointAutonRight(DriveTrain driveTrain, int setAngle) {
+  public SixPointAutonRight(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-    this.setAngle = setAngle;
 
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,38 +32,65 @@ public class SixPointAutonRight extends CommandBase {
   public void execute() {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
-
+    DriveTrain.gyro.getAngle();
+    
+    //Moves bot forward
+   /*Turns on FlyWheel and Belt, stops the bot's movement, turns off FlyWheel and Belt,
+    then turns the bot to 180, then moves the bot forward*/
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(2);
     IntakeMotors.flyWheel.set(-1);
+    IntakeMotors.intake.set(1);
     IntakeMotors.belt.set(1);
+    Timer.delay(2);
+
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(0);
+    IntakeMotors.intake.set(0);
     IntakeMotors.belt.set(0);
-    while(DriveTrain.gyro.getAngle() < setAngle*6){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle*6));
+
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      if(DriveTrain.gyro.getAngle() > 177.5){
+        break;
+      }
     }
+
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3);
-    while(DriveTrain.gyro.getAngle() > setAngle){
-      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, setAngle));
+
+    //Turns bot to setAngle then drives forward
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 200));
+      if(DriveTrain.gyro.getAngle() > 202.5){
+        break;
+      }
     }
+
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(0.5);
+    //Stops bot, turns on FlyWheel
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
+    //Turns on Belt
     IntakeMotors.belt.set(1);
     Timer.delay(1.5);
+    //Turns off both FlyWheel and Belt, moves bot backwards
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
     driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
     Timer.delay(1);
-    while(DriveTrain.gyro.getAngle() < setAngle){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    //Turns bot to angle 0, moves bot backwards
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      if(DriveTrain.gyro.getAngle() < 177.5){
+        break;
+      }
     }
+
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(5.5);
+    //All bot movement ceases, end of SixPointAutonLeft
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
   }
 
