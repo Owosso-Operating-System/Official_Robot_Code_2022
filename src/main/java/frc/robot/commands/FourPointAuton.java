@@ -8,20 +8,17 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
-import frc.robot.PIDMath;
 
 public class FourPointAuton extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
-  private final int setAngle;
 
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public FourPointAuton(DriveTrain driveTrain, int setAngle) {
+  public FourPointAuton(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-    this.setAngle = setAngle;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }

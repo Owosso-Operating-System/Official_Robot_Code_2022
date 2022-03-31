@@ -6,21 +6,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.PIDMath;
 import frc.robot.subsystems.DriveTrain;
 
 public class TwoPointAuton extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
-  private final int setAngle;
 
   boolean timeUp = false;
 
   /** Creates a new MinPointAuton. */
-  public TwoPointAuton(DriveTrain driveTrain, int setAngle) {
+  public TwoPointAuton(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-    this.setAngle = setAngle;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -36,10 +33,10 @@ public class TwoPointAuton extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
   
     //Bot moves backwards
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(2);
     //Bot ceases movement, end of TwoPointAuton
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, setAngle));
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(13);
   }
 
