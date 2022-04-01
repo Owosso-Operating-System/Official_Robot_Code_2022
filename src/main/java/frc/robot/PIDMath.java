@@ -32,7 +32,7 @@ public class PIDMath {
     double totalError = 0;
     double lastError = 0;
 
-    error = kAngleSetpoint - DriveTrain.gyro.getAngle();
+    error = kAngleSetpoint - DriveTrain.gyro.getYaw();
     totalError += error;
 
     proportional = error * kP;
