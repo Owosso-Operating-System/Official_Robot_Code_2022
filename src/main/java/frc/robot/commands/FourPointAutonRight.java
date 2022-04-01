@@ -44,7 +44,7 @@ public class FourPointAutonRight extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 30));
-      if(DriveTrain.gyro.getAngle() > 27.5){
+      if(DriveTrain.gyro.getYaw() > 27.5){
         break;
       }
     }
@@ -69,7 +69,7 @@ public class FourPointAutonRight extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
-      if(DriveTrain.gyro.getAngle() < -2.5){
+      if(DriveTrain.gyro.getYaw() < -2.5){
         break;
       }
     }

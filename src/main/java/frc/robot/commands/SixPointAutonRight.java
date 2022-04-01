@@ -32,8 +32,8 @@ public class SixPointAutonRight extends CommandBase {
   public void execute() {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
-    DriveTrain.gyro.getAngle();
-    
+
+    DriveTrain.gyro.getYaw();
     //Moves bot forward
    /*Turns on FlyWheel and Belt, stops the bot's movement, turns off FlyWheel and Belt,
     then turns the bot to 180, then moves the bot forward*/
@@ -50,7 +50,7 @@ public class SixPointAutonRight extends CommandBase {
 
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-      if(DriveTrain.gyro.getAngle() > 177.5){
+      if(DriveTrain.gyro.getYaw() > 177.5){
         break;
       }
     }
@@ -61,7 +61,7 @@ public class SixPointAutonRight extends CommandBase {
     //Turns bot to setAngle then drives forward
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 200));
-      if(DriveTrain.gyro.getAngle() > 202.5){
+      if(DriveTrain.gyro.getYaw() > 202.5){
         break;
       }
     }
@@ -83,7 +83,7 @@ public class SixPointAutonRight extends CommandBase {
     //Turns bot to angle 0, moves bot backwards
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-      if(DriveTrain.gyro.getAngle() < 177.5){
+      if(DriveTrain.gyro.getYaw() < 177.5){
         break;
       }
     }

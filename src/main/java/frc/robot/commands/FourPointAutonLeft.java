@@ -33,7 +33,6 @@ public class FourPointAutonLeft extends CommandBase {
   @Override
   public void execute() {
     driveTrain.mecDrive.setSafetyEnabled(false);
-    DriveTrain.gyro.reset();
     //Turns on FlyWheel and drives forward
     IntakeMotors.flyWheel.set(-1);
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
@@ -44,7 +43,7 @@ public class FourPointAutonLeft extends CommandBase {
 
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, -30));
-      if(DriveTrain.gyro.getAngle() < -32.5){
+      if(DriveTrain.gyro.getYaw() < -32.5){
         break; 
       }
     }
@@ -70,7 +69,7 @@ public class FourPointAutonLeft extends CommandBase {
 
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
-      if(DriveTrain.gyro.getAngle() > -2.5){
+      if(DriveTrain.gyro.getYaw() > -2.5){
         break;
       }
 

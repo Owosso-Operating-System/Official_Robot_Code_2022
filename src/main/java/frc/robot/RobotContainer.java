@@ -85,7 +85,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
 
-    DriveTrain.gyro.reset();
+    DriveTrain.gyro.addYaw(0);
 
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 

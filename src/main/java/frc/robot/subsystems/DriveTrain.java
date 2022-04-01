@@ -4,12 +4,12 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
-
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
   /** Class: DriveTrain
@@ -26,7 +26,7 @@ public class DriveTrain extends SubsystemBase {
      public final MecanumDrive mecDrive;
 
      public static SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
-     public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(kGyroPort);
+     public static Pigeon2 gyro = new Pigeon2(10);
 
   /**Method: DriveTrain
    * Parameters: None
@@ -36,6 +36,8 @@ public class DriveTrain extends SubsystemBase {
    *  */
 
   public DriveTrain() {
+    
+    DriveTrain.gyro.addYaw(0);
 
     leftBack = new CANSparkMax( 3, MotorType.kBrushless);
     leftFront = new CANSparkMax( 4, MotorType.kBrushless);
