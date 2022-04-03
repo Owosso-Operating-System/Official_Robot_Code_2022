@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 
-public class FourPointAuton extends CommandBase {
+public class SixPointAuton extends CommandBase {
   
   public final int oneFoot = 161;
   private final DriveTrain driveTrain;
@@ -17,7 +17,7 @@ public class FourPointAuton extends CommandBase {
   boolean timeUp = false;
 
   /** Creates a new MaxPointAuton. */
-  public FourPointAuton(DriveTrain driveTrain) {
+  public SixPointAuton(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,11 +34,7 @@ public class FourPointAuton extends CommandBase {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    //Moves bot forward
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(3.5);
-    //Bot stops, turns on FlyWheel
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    //Turns on FlyWheel
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt

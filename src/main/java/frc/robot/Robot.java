@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    String[] autons = {"SixPointAutonLeft","SixPointAutonRight", "FourPointAuton","FourPointAutonLeft","FourPointAutonRight", "TwoPointAuton"};
+    String[] autons = {"TenPointAutonLeft","TenPointAutonRight", "SixPointAuton","SixPointAutonLeft","SixPointAutonRight", "TwoPointAuton"};
     SmartDashboard.putStringArray("Auto List", autons);
     
     // Creates and sets up the camera 

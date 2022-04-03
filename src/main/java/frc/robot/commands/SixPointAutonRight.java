@@ -6,18 +6,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.PIDMath;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
+import frc.robot.PIDMath;
 
 public class SixPointAutonRight extends CommandBase {
-
+  
+  public final int oneFoot = 161;
   private final DriveTrain driveTrain;
 
-  /** Creates a new SixPointAuton. */
+  boolean timeUp = false;
+
+  /** Creates a new MaxPointAuton. */
   public SixPointAutonRight(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
-
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -30,69 +32,38 @@ public class SixPointAutonRight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    DriveTrain.gyro.getYaw();
-    //Moves bot forward
-   /*Turns on FlyWheel and Belt, stops the bot's movement, turns off FlyWheel and Belt,
-    then turns the bot to 180, then moves the bot forward*/
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
+    //Turns on FlyWheel and sets forward speed
     IntakeMotors.flyWheel.set(-1);
-    IntakeMotors.intake.set(1);
-    IntakeMotors.belt.set(1);
-    Timer.delay(2);
-
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    Timer.delay(1);
+    //Turns off flywheel
     IntakeMotors.flyWheel.set(0);
-    IntakeMotors.intake.set(0);
-    IntakeMotors.belt.set(0);
-
-    while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-      if(DriveTrain.gyro.getYaw() > 177.5){
-        break;
-      }
-    }
-
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(3);
-
-    //Turns bot to setAngle then drives forward
-    while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 200));
-      if(DriveTrain.gyro.getYaw() > 202.5){
-        break;
-      }
-    }
-
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(0.5);
-    //Stops bot, turns on FlyWheel
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    Timer.delay(1);
+    //Stops bot movement, turns on FlyWheel
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt
     IntakeMotors.belt.set(1);
-    Timer.delay(1.5);
-    //Turns off both FlyWheel and Belt, moves bot backwards
+    Timer.delay(2);
+    //Turns off both FlyWheel and Belt, then reverses the bot slowly
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
-    Timer.delay(1);
-    //Turns bot to angle 0, moves bot backwards
+    //Stops bot, turns the bot to an angle of 0
     while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-      if(DriveTrain.gyro.getYaw() < 177.5){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 20));
+      if(-DriveTrain.gyro.getYaw() > 17.5){
         break;
       }
     }
-
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(5.5);
-    //All bot movement ceases, end of SixPointAutonLeft
+    //Bot backs up
+    driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);
+    Timer.delay(0.5);
+    //Bots ceases movement, end of FourPointAutonRight
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -101,6 +72,7 @@ public class SixPointAutonRight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    timeUp = true;
+    return timeUp;
   }
 }
