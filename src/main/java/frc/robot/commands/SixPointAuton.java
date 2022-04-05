@@ -33,7 +33,8 @@ public class SixPointAuton extends CommandBase {
   public void execute() {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
-
+    IntakeMotors.flyWheel.set(-1);
+    Timer.delay(0.5);
     //Turns on FlyWheel
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);

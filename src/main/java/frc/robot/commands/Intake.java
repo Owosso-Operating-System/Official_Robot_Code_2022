@@ -40,7 +40,7 @@ public class Intake extends CommandBase {
      if(controller.getRightBumper() == true){
       IntakeMotors.flyWheel.set(1);
     }
-    if(controller.getLeftBumper() == true){
+    if(controller.getStartButton() == true){
       IntakeMotors.flyWheel.set(-1);
     }
      if(controller.getXButton() == true){

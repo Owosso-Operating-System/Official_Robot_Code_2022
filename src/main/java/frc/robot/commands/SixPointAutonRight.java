@@ -35,13 +35,19 @@ public class SixPointAutonRight extends CommandBase {
     
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    //Turns on FlyWheel and sets forward speed
+    //Turns on FlyWheel in reverse
     IntakeMotors.flyWheel.set(-1);
-    Timer.delay(1);
-    //Turns off flywheel
+    Timer.delay(0.5);
     IntakeMotors.flyWheel.set(0);
-    Timer.delay(1);
-    //Stops bot movement, turns on FlyWheel
+    
+    while(true){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 30));
+      if(DriveTrain.gyro.getYaw() > 32.5){
+        break; 
+      }
+    }
+
+    //Turns on FlyWheel
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt
@@ -51,12 +57,14 @@ public class SixPointAutonRight extends CommandBase {
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
     //Stops bot, turns the bot to an angle of 0
+
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 20));
-      if(-DriveTrain.gyro.getYaw() > 17.5){
+      if(-DriveTrain.gyro.getYaw() < 17.5){
         break;
       }
     }
+
     //Bot backs up
     driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);
     Timer.delay(0.5);

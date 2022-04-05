@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
+import frc.robot.commands.FourteenPointAuton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.TenPointAutonLeft;
 import frc.robot.commands.TenPointAutonRight;
@@ -69,12 +70,13 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
+    new JoystickButton(controller1, XboxController.Button.kStart.value).whenHeld(new Intake(intakeMotors, controller0));
     new JoystickButton(controller1, XboxController.Button.kA.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kX.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1));
 
-    new JoystickButton(controller1, XboxController.Button.kLeftBumper.value).whenHeld(new Intake(intakeMotors, controller1));
+    //new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1));
   }
   
@@ -90,9 +92,11 @@ public class RobotContainer {
     String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
 
     switch(autoName){
+      case "FourteenPointAuton":
+        return new FourteenPointAuton(driveTrain);
       case "TenPointAutonLeft":
         return new TenPointAutonLeft(driveTrain);
-        case "TenPointAutonRight":
+      case "TenPointAutonRight":
         return new TenPointAutonRight(driveTrain);
       case "SixPointAuton":
         return new SixPointAuton(driveTrain);

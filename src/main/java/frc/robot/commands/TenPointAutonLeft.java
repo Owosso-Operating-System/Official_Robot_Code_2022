@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.sql.Time;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDMath;
@@ -34,31 +36,35 @@ public class TenPointAutonLeft extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
     DriveTrain.gyro.getYaw();
     
-    //Moves bot forward
-   /*Turns on FlyWheel and Belt, stops the bot's movement, turns off FlyWheel and Belt,
-    then turns the bot to 180, then moves the bot forward*/
+    //Moves bot backwards to drop the intake
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
+    Timer.delay(0.2);
+    //Turns on FlyWheel, Belt, and intake, moves the bot foreward
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     IntakeMotors.flyWheel.set(-1);
     IntakeMotors.intake.set(1);
     IntakeMotors.belt.set(1);
-    Timer.delay(2);
-
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    Timer.delay(2.1);
+    //Stops the flyWheel, intake, and belt
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.intake.set(0);
     IntakeMotors.belt.set(0);
 
     while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
-      if(DriveTrain.gyro.getYaw() > 177.5){
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 80));
+      if(DriveTrain.gyro.getYaw() > 82.5){
         break;
       }
     }
 
+    //Moves the bot foreward to the tarmack
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(3);
+    Timer.delay(2.3);
+    //moves the bot bsck wards for 0.01 seconds to cancel the bot's inertia
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
+    Timer.delay(0.01);
+    //Turns bot towards the hubs
 
-    //Turns bot to setAngle then drives forward
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
       if(DriveTrain.gyro.getYaw() < 157.5){
@@ -66,10 +72,7 @@ public class TenPointAutonLeft extends CommandBase {
       }
     }
 
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(0.5);
-    //Stops bot, turns on FlyWheel
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    //Turns on FlyWheel
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt
