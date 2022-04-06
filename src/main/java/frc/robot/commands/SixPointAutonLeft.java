@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
@@ -56,13 +57,13 @@ public class SixPointAutonLeft extends CommandBase {
 
     /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, -30));
-      if(DriveTrain.gyro.getYaw() > 27.5){
+      if(driveTrain.gyro.getYaw() > 27.5){
         break; 
       }
-    }*/                                 
-    while(DriveTrain.gyro.getYaw() < 27.5){
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, -30));
-    }
+    }*/
+    do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, -30)/3);
+    } while (driveTrain.gyro.getYaw() < 29);
 
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     //Stops Turning then turns on FlyWheel
@@ -77,12 +78,15 @@ public class SixPointAutonLeft extends CommandBase {
     IntakeMotors.belt.set(0);
     //Turns back to an angle of 0
 
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 0));
       if(DriveTrain.gyro.getYaw() < -2.5){
         break;
       }
-    }
+    }*/
+    do {
+    driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, 1)/2);
+    } while (driveTrain.gyro.getYaw() > -1);
 
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     //Moves backwards
