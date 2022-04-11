@@ -29,14 +29,14 @@ public class FourteenPointAuton extends CommandBase {
   @Override
   public void execute() {
 
-  IntakeMotors.flyWheel.set(-1);
+  /*IntakeMotors.flyWheel.set(-1);
   Timer.delay(0.5);
   IntakeMotors.flyWheel.set(0);
   Timer.delay(2);
   IntakeMotors.flyWheel.set(1);
-  Timer.delay(1.5);
+  Timer.delay(1);
   IntakeMotors.belt.set(1);
-  Timer.delay(1.5);
+  Timer.delay(1);
   IntakeMotors.flyWheel.set(0);
   IntakeMotors.belt.set(0);
   driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
@@ -44,14 +44,65 @@ public class FourteenPointAuton extends CommandBase {
   driveTrain.mecDrive.driveCartesian(1, 0, 0);
   IntakeMotors.intake.set(1);
   IntakeMotors.belt.set(1);
-  IntakeMotors.flyWheel.set(-1);
   Timer.delay(1);
   driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
-  Timer.delay(0.5);
+  Timer.delay(0.25);
   driveTrain.mecDrive.driveCartesian(1, 0, 0);
   Timer.delay(2.5);
   driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
+  Timer.delay(0.25);
+  driveTrain.mecDrive.driveCartesian(0.5, 0, 0);
   Timer.delay(0.5);
+  IntakeMotors.belt.set(-1);
+  Timer.delay(0.1);
+  IntakeMotors.belt.set(0);
+  IntakeMotors.flyWheel.set(1);
+  Timer.delay(1);
+  IntakeMotors.belt.set(1);
+  Timer.delay(1);
+  IntakeMotors.belt.set(0);
+  IntakeMotors.flyWheel.set(0);
+  driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);
+  Timer.delay(4.4);
+  driveTrain.mecDrive.driveCartesian(0, 0, 0);*/
+
+  driveTrain.mecDrive.setSafetyEnabled(false);
+
+  IntakeMotors.flyWheel.set(-1);
+  Timer.delay(0.5);
+  IntakeMotors.flyWheel.set(0);
+  Timer.delay(2); 
+  IntakeMotors.flyWheel.set(1);
+  Timer.delay(1);
+  IntakeMotors.belt.set(1); 
+  Timer.delay(1.5);
+  IntakeMotors.flyWheel.set(0);
+  IntakeMotors.belt.set(0);
+  driveTrain.mecDrive.driveCartesian(0, 0, .8);
+  Timer.delay(0.5);
+  driveTrain.mecDrive.driveCartesian(1, 0, 0);
+  IntakeMotors.belt.set(1);
+  Timer.delay(1);
+  driveTrain.mecDrive.driveCartesian(0, 0, 1);
+  Timer.delay(0.3);
+  driveTrain.mecDrive.driveCartesian(1, 0, 0);
+  Timer.delay(2);
+  driveTrain.mecDrive.driveCartesian(0, 0, 1);
+  Timer.delay(0.32);
+  driveTrain.mecDrive.driveCartesian(1, 0, 0);
+  Timer.delay(3);
+  driveTrain.mecDrive.driveCartesian(0, 0, 0);
+  IntakeMotors.flyWheel.set(1);
+  IntakeMotors.belt.set(-.5);
+  Timer.delay(1);
+  IntakeMotors.belt.set(1);
+  Timer.delay(1.5);
+  IntakeMotors.flyWheel.set(0);
+  IntakeMotors.belt.set(0);
+  driveTrain.mecDrive.driveCartesian(-1, 0, 0);
+  Timer.delay(0.38);
+  driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
 
   }
 

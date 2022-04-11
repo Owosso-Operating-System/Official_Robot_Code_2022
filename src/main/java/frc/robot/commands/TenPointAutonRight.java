@@ -33,43 +33,58 @@ public class TenPointAutonRight extends CommandBase {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    DriveTrain.gyro.getYaw();
+    //DriveTrain.gyro.getYaw();
     //Moves bot forward
    /*Turns on FlyWheel and Belt, stops the bot's movement, turns off FlyWheel and Belt,
     then turns the bot to 180, then moves the bot forward*/
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
+    /*driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     IntakeMotors.flyWheel.set(-1);
     IntakeMotors.intake.set(1);
     IntakeMotors.belt.set(1);
+    IntakeMotors.flyWheel.set(0);
     Timer.delay(2);
 
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    IntakeMotors.flyWheel.set(0);
     IntakeMotors.intake.set(0);
     IntakeMotors.belt.set(0);
 
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       if(DriveTrain.gyro.getYaw() > 177.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      } while (DriveTrain.gyro.getYaw() < 179);*/
+      /*driveTrain.mecDrive.driveCartesian(0, 0, 1);
+      Timer.delay(2);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
 
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(3);
 
     //Turns bot to setAngle then drives forward
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 200));
       if(DriveTrain.gyro.getYaw() > 202.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 200));
+      } while (DriveTrain.gyro.getYaw() < 209);*/
+
+      /*driveTrain.mecDrive.driveCartesian(0, 0, 0.25);
+      Timer.delay(2);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
 
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     Timer.delay(0.5);
     //Stops bot, turns on FlyWheel
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    driveTrain.mecDrive.driveCartesian(0.5, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt
@@ -78,20 +93,65 @@ public class TenPointAutonRight extends CommandBase {
     //Turns off both FlyWheel and Belt, moves bot backwards
     IntakeMotors.flyWheel.set(0);
     IntakeMotors.belt.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
-    Timer.delay(1);
+    Timer.delay(0.1);
     //Turns bot to angle 0, moves bot backwards
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       if(DriveTrain.gyro.getYaw() < 177.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      } while (DriveTrain.gyro.getYaw() > 181);*/
+
+      /*driveTrain.mecDrive.driveCartesian(0, 0, -0.5);
+      Timer.delay(1);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
+
 
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(5.5);
     //All bot movement ceases, end of SixPointAutonLeft
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);*/
+    
+    IntakeMotors.flyWheel.set(-1);
+    Timer.delay(0.5);
+    IntakeMotors.flyWheel.set(0);
+    Timer.delay(2);
+    //Turns on FlyWheel
+    IntakeMotors.flyWheel.set(1);
+    Timer.delay(1);
+    //Turns on Belt
+    IntakeMotors.belt.set(1);
+    Timer.delay(1.5);
+    //Turns off both FlyWheel and Belt, moves bot backwards
+    IntakeMotors.flyWheel.set(0);
+    IntakeMotors.belt.set(0);
+    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
+    Timer.delay(1);
+    //All bot movement ceases, end of FourPointAuton
+    driveTrain.mecDrive.driveCartesian(0, 0, 1);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, -1);
+    Timer.delay(0.1);
+    driveTrain.mecDrive.driveCartesian(0.5, 0, 0);
+    IntakeMotors.intake.set(1);
+    IntakeMotors.belt.set(1);
+    Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0, 0, 1);
+    IntakeMotors.intake.set(0);
+    IntakeMotors.belt.set(0);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, -1);
+    Timer.delay(0.1);
+    driveTrain.mecDrive.driveCartesian(.75, 0, 0);
+    IntakeMotors.flyWheel.set(1);
+    Timer.delay(1);
+    IntakeMotors.belt.set(1);
+    Timer.delay(1);
+    driveTrain.mecDrive.driveCartesian(-1, 0, 0);
+    Timer.delay(3.8);
   }
 
   // Called once the command ends or is interrupted.

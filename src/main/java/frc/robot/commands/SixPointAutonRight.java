@@ -40,14 +40,16 @@ public class SixPointAutonRight extends CommandBase {
     Timer.delay(0.5);
     IntakeMotors.flyWheel.set(0);
     
-    while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 30));
-      if(DriveTrain.gyro.getYaw() > 32.5){
-        break; 
-      }
-    }
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 30)/3);
+    } while (DriveTrain.gyro.getYaw() > -29);*/
+
+    driveTrain.mecDrive.driveCartesian(0, 0, 0.25);
+    Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
 
     //Turns on FlyWheel
+    driveTrain.mecDrive.driveCartesian(.5, 0, 0);
     IntakeMotors.flyWheel.set(1);
     Timer.delay(1);
     //Turns on Belt
@@ -58,12 +60,13 @@ public class SixPointAutonRight extends CommandBase {
     IntakeMotors.belt.set(0);
     //Stops bot, turns the bot to an angle of 0
 
-    while(true){
-      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 20));
-      if(-DriveTrain.gyro.getYaw() < 17.5){
-        break;
-      }
-    }
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, -PIDMath.getTurnSpeed(driveTrain, 0)*1.2);
+      } while (DriveTrain.gyro.getYaw() < -1);*/
+  
+      driveTrain.mecDrive.driveCartesian(0, 0, -0.25);
+      Timer.delay(2);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
 
     //Bot backs up
     driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);

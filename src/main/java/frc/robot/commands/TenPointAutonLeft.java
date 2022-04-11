@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import java.sql.Time;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -34,67 +33,81 @@ public class TenPointAutonLeft extends CommandBase {
   public void execute() {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
-    DriveTrain.gyro.getYaw();
-    
+    //DriveTrain.gyro.getYaw();
+
+    //Turns on FlyWheel, Belt, and intake, moves the bot foreward
+    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
+    IntakeMotors.intake.set(1);
+    IntakeMotors.belt.set(1);
+    Timer.delay(2.2);
     //Moves bot backwards to drop the intake
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
     Timer.delay(0.2);
-    //Turns on FlyWheel, Belt, and intake, moves the bot foreward
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    IntakeMotors.flyWheel.set(-1);
-    IntakeMotors.intake.set(1);
-    IntakeMotors.belt.set(1);
-    Timer.delay(2.1);
     //Stops the flyWheel, intake, and belt
-    IntakeMotors.flyWheel.set(0);
     IntakeMotors.intake.set(0);
     IntakeMotors.belt.set(0);
 
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 80));
       if(DriveTrain.gyro.getYaw() > 82.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      } while (DriveTrain.gyro.getYaw() < 179);*/
+
+      driveTrain.mecDrive.driveCartesian(0, 0, 0.45);
+      Timer.delay(1.1);
 
     //Moves the bot foreward to the tarmack
-    driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
-    Timer.delay(2.3);
-    //moves the bot bsck wards for 0.01 seconds to cancel the bot's inertia
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(0.01);
+      driveTrain.mecDrive.driveCartesian(0.35, 0.1, 0);
+      Timer.delay(2);
     //Turns bot towards the hubs
 
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
       if(DriveTrain.gyro.getYaw() < 157.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
+      } while (DriveTrain.gyro.getYaw() > 161);*/
 
+      /*driveTrain.mecDrive.driveCartesian(0, 0, 0.25);
+      Timer.delay(2);
+      driveTrain.mecDrive.driveCartesian(0.5, 0, 0);*/
+
+      IntakeMotors.belt.set(-1);
+      Timer.delay(0.1);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
     //Turns on FlyWheel
-    IntakeMotors.flyWheel.set(1);
-    Timer.delay(1);
+      IntakeMotors.belt.set(0);
+      IntakeMotors.flyWheel.set(1);
+      Timer.delay(1);
     //Turns on Belt
-    IntakeMotors.belt.set(1);
-    Timer.delay(1.5);
+      IntakeMotors.belt.set(1);
+      Timer.delay(3);
     //Turns off both FlyWheel and Belt, moves bot backwards
-    IntakeMotors.flyWheel.set(0);
-    IntakeMotors.belt.set(0);
-    driveTrain.mecDrive.driveCartesian(-0.1, 0, 0);
-    Timer.delay(1);
+      IntakeMotors.flyWheel.set(0);
+      IntakeMotors.belt.set(0);
     //Turns bot to angle 0, moves bot backwards
-    while(true){
+    /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       if(DriveTrain.gyro.getYaw() > 177.5){
         break;
       }
-    }
+    }*/
+    /*do {
+      driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
+      } while (DriveTrain.gyro.getYaw() < 179);*/
 
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(5.5);
+      driveTrain.mecDrive.driveCartesian(-0.3, 0, 0);
+      Timer.delay(3.9);
     //All bot movement ceases, end of SixPointAutonLeft
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
+      Timer.delay(1.5);
   }
 
   // Called once the command ends or is interrupted.

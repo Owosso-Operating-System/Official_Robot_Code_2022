@@ -47,9 +47,9 @@ public class Climb extends CommandBase {
 
     //controller 0
     if(controller0.getRawAxis(2) > 0.1){
-      ClimbMotors.pitchMotor.set(-controller0.getRawAxis(2)/5);
+      ClimbMotors.pitchMotor.set(-controller0.getRawAxis(2)/4);
     }else if(controller0.getRawAxis(3) > 0.1){
-      ClimbMotors.pitchMotor.set(controller0.getRawAxis(3)/5);
+      ClimbMotors.pitchMotor.set(controller0.getRawAxis(3)/3);
     }else{
       ClimbMotors.pitchMotor.set(0);
     }
