@@ -15,7 +15,7 @@ public class TenPointAutonLeft extends CommandBase {
 
   private final DriveTrain driveTrain;
 
-  /** Creates a new SixPointAuton. */
+  /** Creates a new TenPointAuton. */
   public TenPointAutonLeft(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
 
@@ -35,14 +35,14 @@ public class TenPointAutonLeft extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
     //DriveTrain.gyro.getYaw();
 
-    //Turns on FlyWheel, Belt, and intake, moves the bot foreward
+    //Moves bot backwards to drop the intake
+    driveTrain.mecDrive.driveCartesian(-1, 0, 0);
+    Timer.delay(0.1);
+    //Turns on Belt, and intake, moves the bot forward
     driveTrain.mecDrive.driveCartesian(0.25, 0, 0);
     IntakeMotors.intake.set(1);
     IntakeMotors.belt.set(1);
-    Timer.delay(2.2);
-    //Moves bot backwards to drop the intake
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(0.2);
+    Timer.delay(2.4);
     //Stops the flyWheel, intake, and belt
     IntakeMotors.intake.set(0);
     IntakeMotors.belt.set(0);
@@ -53,6 +53,7 @@ public class TenPointAutonLeft extends CommandBase {
         break;
       }
     }*/
+
     /*do {
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       } while (DriveTrain.gyro.getYaw() < 179);*/
@@ -61,27 +62,26 @@ public class TenPointAutonLeft extends CommandBase {
       Timer.delay(1.1);
 
     //Moves the bot foreward to the tarmack
-      driveTrain.mecDrive.driveCartesian(0.35, 0.1, 0);
-      Timer.delay(2);
+      driveTrain.mecDrive.driveCartesian(0.35, 0, 0);
+      Timer.delay(2.5);
     //Turns bot towards the hubs
-
+    driveTrain.mecDrive.driveCartesian(0, 0, -0.45);
+    Timer.delay(0.2);
     /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
       if(DriveTrain.gyro.getYaw() < 157.5){
         break;
       }
     }*/
+
     /*do {
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
       } while (DriveTrain.gyro.getYaw() > 161);*/
 
-      /*driveTrain.mecDrive.driveCartesian(0, 0, 0.25);
-      Timer.delay(2);
-      driveTrain.mecDrive.driveCartesian(0.5, 0, 0);*/
-
+    //turns on belt backwards to give the flyWheel room to spin up
       IntakeMotors.belt.set(-1);
-      Timer.delay(0.1);
       driveTrain.mecDrive.driveCartesian(0, 0, 0);
+      Timer.delay(0.1);
     //Turns on FlyWheel
       IntakeMotors.belt.set(0);
       IntakeMotors.flyWheel.set(1);
@@ -89,9 +89,10 @@ public class TenPointAutonLeft extends CommandBase {
     //Turns on Belt
       IntakeMotors.belt.set(1);
       Timer.delay(3);
-    //Turns off both FlyWheel and Belt, moves bot backwards
+    //Turns off both FlyWheel and Belt, moves bot away from hub
       IntakeMotors.flyWheel.set(0);
       IntakeMotors.belt.set(0);
+      
     //Turns bot to angle 0, moves bot backwards
     /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
@@ -103,11 +104,15 @@ public class TenPointAutonLeft extends CommandBase {
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       } while (DriveTrain.gyro.getYaw() < 179);*/
 
-      driveTrain.mecDrive.driveCartesian(-0.3, 0, 0);
-      Timer.delay(3.9);
-    //All bot movement ceases, end of SixPointAutonLeft
+      driveTrain.mecDrive.driveCartesian(0, 0, 0.45);
+      Timer.delay(0.2);
+    //moves bot backwards 
+      driveTrain.mecDrive.driveCartesian(0.34, 0, 0);
+      Timer.delay(2.5);
+    //All bot movement ceases, end of TenPointAuton
       driveTrain.mecDrive.driveCartesian(0, 0, 0);
-      Timer.delay(1.5);
+      Timer.delay(1.9);
+      isFinished();
   }
 
   // Called once the command ends or is interrupted.

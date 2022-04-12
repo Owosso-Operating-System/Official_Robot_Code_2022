@@ -11,12 +11,12 @@ import frc.robot.PIDMath;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMotors;
 
-public class TenPointAutonRight extends CommandBase {
+public class TenPointAuton extends CommandBase {
 
   private final DriveTrain driveTrain;
 
   /** Creates a new TenPointAuton. */
-  public TenPointAutonRight(DriveTrain driveTrain) {
+  public TenPointAuton(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
 
     addRequirements(driveTrain);
@@ -65,8 +65,7 @@ public class TenPointAutonRight extends CommandBase {
       driveTrain.mecDrive.driveCartesian(0.35, 0, 0);
       Timer.delay(2.5);
     //Turns bot towards the hubs
-    driveTrain.mecDrive.driveCartesian(0, 0, 0.45);
-    Timer.delay(0.2);
+
     /*while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 160));
       if(DriveTrain.gyro.getYaw() < 157.5){
@@ -89,7 +88,7 @@ public class TenPointAutonRight extends CommandBase {
     //Turns on Belt
       IntakeMotors.belt.set(1);
       Timer.delay(3);
-    //Turns off both FlyWheel and Belt, moves bot away from hub
+    //Turns off both FlyWheel and Belt, moves bot backwards
       IntakeMotors.flyWheel.set(0);
       IntakeMotors.belt.set(0);
       
@@ -104,14 +103,11 @@ public class TenPointAutonRight extends CommandBase {
       driveTrain.mecDrive.driveCartesian(0, 0, PIDMath.getTurnSpeed(driveTrain, 180));
       } while (DriveTrain.gyro.getYaw() < 179);*/
 
-      driveTrain.mecDrive.driveCartesian(0, 0, -0.45);
-      Timer.delay(0.2);
-    //moves bot backwards 
-      driveTrain.mecDrive.driveCartesian(0.34, 0, 0);
+      driveTrain.mecDrive.driveCartesian(-0.3, 0, 0);
       Timer.delay(2.5);
     //All bot movement ceases, end of TenPointAuton
       driveTrain.mecDrive.driveCartesian(0, 0, 0);
-      Timer.delay(1.9);
+      Timer.delay(2.3);
       isFinished();
   }
 
