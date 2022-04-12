@@ -11,11 +11,9 @@ import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
 import frc.robot.commands.FourteenPointAuton;
 import frc.robot.commands.Intake;
+import frc.robot.commands.TenPointAuton;
 import frc.robot.commands.TenPointAutonLeft;
 import frc.robot.commands.TenPointAutonRight;
-import frc.robot.commands.SixPointAuton;
-import frc.robot.commands.SixPointAutonLeft;
-import frc.robot.commands.SixPointAutonRight;
 import frc.robot.commands.TwoPointAuton;
 import frc.robot.subsystems.ClimbMotors;
 import frc.robot.subsystems.DriveTrain;
@@ -76,34 +74,29 @@ public class RobotContainer {
     new JoystickButton(controller1, XboxController.Button.kY.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kB.value).whenHeld(new Intake(intakeMotors, controller1));
 
-    //new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1));
     new JoystickButton(controller1, XboxController.Button.kRightBumper.value).whenHeld(new Intake(intakeMotors, controller1));
   }
   
   
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
- * @return 
-   */
+ /**Method: GetAutonomousCommand
+   * Parameters: N/A
+   * Variables used: autonName
+   * What it does: Gets the string from the dashboard 
+   *               so the correct auton is run.
+   *  */
   public Command getAutonomousCommand() {
 
-    //DriveTrain.gyro.addYaw(0);
-
-    String autoName = SmartDashboard.getString("Auto Selector", "MinPointAuton");
+    String autoName = SmartDashboard.getString("Auto Selector", "TenPointAuton");
 
     switch(autoName){
       case "FourteenPointAuton":
         return new FourteenPointAuton(driveTrain);
+      case "TenPointAuton":
+        return new TenPointAuton(driveTrain);
       case "TenPointAutonLeft":
         return new TenPointAutonLeft(driveTrain);
       case "TenPointAutonRight":
         return new TenPointAutonRight(driveTrain);
-      case "SixPointAuton":
-        return new SixPointAuton(driveTrain);
-      case "SixPointAutonLeft":
-        return new SixPointAutonLeft(driveTrain);
-      case "SixPointAutonRight":
-        return new SixPointAutonRight(driveTrain);
       case "TwoPointAuton":
         return new TwoPointAuton(driveTrain);
     }

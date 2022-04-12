@@ -21,7 +21,6 @@ public class Intake extends CommandBase {
    * Variables used: intakeMotors, controller, and hatchOrIntake
    * What it does: Assigns the parameter intakeMotors to intakeMotors
    *               Assigns the parameter controller to controller
-   *               Assigns the parameter hatchOrIntake to hatchOrIntake
    *               Uses addRequirements to tie IntakeMotors to Intake            
    *  */
 
@@ -37,24 +36,30 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-     if(controller.getRightBumper() == true){
+    //Right bumper moves the flyWheel out
+    if(controller.getRightBumper() == true){
       IntakeMotors.flyWheel.set(1);
     }
+    //both controllers start buttons moves the flyWheel in
     if(controller.getStartButton() == true){
       IntakeMotors.flyWheel.set(-1);
     }
-     if(controller.getXButton() == true){
+    //X button moves the intake in
+    if(controller.getXButton() == true){
        IntakeMotors.intake.set(1);
-     }
-     if(controller.getAButton() == true){
+    }
+    //A button moves the intake out
+    if(controller.getAButton() == true){
        IntakeMotors.intake.set(-1);
-     }
-     if(controller.getBButton() == true){
+    }
+    //B button moves the belt up
+    if(controller.getBButton() == true){
        IntakeMotors.belt.set(1);
-     }
-     if(controller.getYButton() == true) {
+    }
+    //Y button moves the belt down
+    if(controller.getYButton() == true) {
        IntakeMotors.belt.set(-1);
-     }
+    }
   }
 
   // Called once the command ends or is interrupted.

@@ -13,15 +13,16 @@ public class Climb extends CommandBase {
   public final XboxController controller0;
 
   /** Creates a new Climb. 
-   * @param controller0 */
+   * @param controller0
+   * @param controller1 */
 
   public Climb(ClimbMotors climbMotors, XboxController controller0, XboxController controller1) {
     this.controller1 = controller0;
     this.controller0 = controller1;
 
-    addRequirements(climbMotors);
-  
     // Use addRequirements() here to declare subsystem dependencies.
+
+    addRequirements(climbMotors);
   }
 
 
@@ -31,7 +32,9 @@ public class Climb extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
 
-  /* Ties the joysticks and the triggers to their motors
+  /* Ties the triggers on conroller1 to the lift
+  * Right goes up
+  * Left goes down
   */
 
   @Override
@@ -44,6 +47,11 @@ public class Climb extends CommandBase {
     } else{
       ClimbMotors.liftMotor.set(0);
     }
+
+    /* Ties the triggers on conroller0 to the pitch
+    * Right goes backwards
+    * Left goes forwards
+    */
 
     //controller 0
     if(controller0.getRawAxis(2) > 0.1){

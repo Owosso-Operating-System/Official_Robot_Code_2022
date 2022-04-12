@@ -6,12 +6,11 @@ package frc.robot.subsystems;
 
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Class: IntakeMotors
-   * Creates a new Intake motor.
+   * Creates new Intake motors.
    *  */
 
 public class IntakeMotors extends SubsystemBase {
@@ -19,12 +18,10 @@ public class IntakeMotors extends SubsystemBase {
 public static CANSparkMax intake;
 public static CANSparkMax belt;
 public static CANSparkMax flyWheel;
-public static CANSparkMax hatch;
-public static RelativeEncoder hatchEncoder;
 
 /**Method: IntakeMotors
    * Parameters: None
-   * Variables used: belt, intake, flywheel, and feedwheel.
+   * Variables used: belt, intake, and flywheel.
    * What it does: Assigns the CANSparkMax variables their output ports
    *    */
 

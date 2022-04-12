@@ -2,8 +2,6 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-//this is currently hypothetical
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -102,7 +100,7 @@ public class FourteenPointAuton extends CommandBase {
   driveTrain.mecDrive.driveCartesian(-1, 0, 0);
   Timer.delay(0.38);
   driveTrain.mecDrive.driveCartesian(0, 0, 0);
-
+  isFinished();
 
   }
 
