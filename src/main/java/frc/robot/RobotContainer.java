@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Climb;
 import frc.robot.commands.Drive;
-import frc.robot.commands.FourteenPointAuton;
 import frc.robot.commands.Intake;
 import frc.robot.commands.TenPointAuton;
 import frc.robot.commands.TenPointAutonLeft;

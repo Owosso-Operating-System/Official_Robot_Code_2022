@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     String[] autons = {"FourteenPointAuton", "TenPointAuton", "TenPointAutonLeft", "TenPointAutonRight", "TwoPointAuton"};
+
     SmartDashboard.putStringArray("Auto List", autons);
 
     // Creates and sets up the camera 
