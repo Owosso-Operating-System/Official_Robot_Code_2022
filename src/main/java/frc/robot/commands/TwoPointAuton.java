@@ -33,11 +33,11 @@ public class TwoPointAuton extends CommandBase {
     driveTrain.mecDrive.setSafetyEnabled(false);
   
     //Bot moves backwards
-    driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);
+    Timer.delay(.9);
     //Bot ceases movement, end of TwoPointAuton
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    Timer.delay(13);
+    Timer.delay(14.1);
   }
 
   // Called once the command ends or is interrupted.
